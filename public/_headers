@@ -3,9 +3,9 @@
   Cache-Control: public, max-age=31536000, immutable
 
 # Cache fonts for 1 year
-*.woff
+/assets/*.woff
   Cache-Control: public, max-age=31536000, immutable
-*.woff2
+/assets/*.woff2
   Cache-Control: public, max-age=31536000, immutable
 
 # Don't cache HTML
