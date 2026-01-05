@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://virosu.com/sitemap.xml
+Sitemap: https://virosu.aldo-tobing.workers.dev/sitemap.xml
 
 # Disallow admin/internal pages if any
 Disallow: /admin/
