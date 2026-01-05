@@ -54,7 +54,7 @@ const ProductCard = ({ product, isLarge }) => {
       ref={cardRef}
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ 
         duration: 0.8, 
         ease: [0.6, 0.01, 0.05, 0.95]
@@ -105,6 +105,8 @@ const ProductCard = ({ product, isLarge }) => {
             <motion.img 
               src={product.image} 
               alt={product.name}
+              loading="lazy"
+              decoding="async"
               style={{ transformStyle: 'preserve-3d', transform: 'translateZ(40px)' }}
               className="relative z-10 max-w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-110"
             />

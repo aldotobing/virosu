@@ -178,7 +178,7 @@ const Hero = () => {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              src="/assets/1 MILLION MAN/50 ML.png"
+              src="/assets/1 MILLION MAN/50 ML.jpg"
               alt="Featured Fragrance"
               className="max-w-sm lg:max-w-md drop-shadow-2xl"
             />
