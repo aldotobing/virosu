@@ -12,12 +12,12 @@ export const products = [
     * Top Notes (Aroma Awal): Jeruk Mandarin Darah (Blood Mandarin), Grapefruit, dan Mint yang segar.
     * Heart Notes (Aroma Tengah): Kayu Manis (Cinnamon), Aroma Rempah, dan Mawar.
     * Base Notes (Aroma Akhir): Amber, Kulit (Leather), Kayu-kayuan, dan Nilam (Patchouli) India.`,
-        image: "/assets/1 MILLION MAN/50 ML.png",
+        image: "/assets/1 MILLION MAN/50 ML.jpg",
         gallery: [
-            "/assets/1 MILLION MAN/50 ML.png",
-            "/assets/1 MILLION MAN/1 MILLION MAN.png",
-            "/assets/1 MILLION MAN/30 ML.png",
-            "/assets/1 MILLION MAN/1 MILION MAN (2).png"
+            "/assets/1 MILLION MAN/50 ML.jpg",
+            "/assets/1 MILLION MAN/1 MILLION MAN.jpg",
+            "/assets/1 MILLION MAN/30 ML.jpg",
+            "/assets/1 MILLION MAN/1 MILION MAN (2).jpg"
         ],
         sizes: ["30ml", "50ml"],
         category: "Men",
@@ -41,12 +41,12 @@ export const products = [
     * Base Notes (Aroma Akhir): Cokelat Meksiko, Vanila, dan Kayu Cendana (Sandalwood).
     
     * Kesan: Aroma dibuka dengan kesegaran buah apel yang bersih, lalu perlahan berubah menjadi aroma cokelat dan vanila yang lembut dan hangat di kulit. Cocok untuk remaja hingga dewasa muda untuk penggunaan sehari-hari atau sekolah.`,
-        image: "/assets/AVRIL ROSE/AVRIL ROSE.png",
+        image: "/assets/AVRIL ROSE/AVRIL ROSE.jpg",
         gallery: [
-            "/assets/AVRIL ROSE/AVRIL ROSE.png",
-            "/assets/AVRIL ROSE/30 ML.png",
-            "/assets/AVRIL ROSE/50 ML.png",
-            "/assets/AVRIL ROSE/AVRIL.png"
+            "/assets/AVRIL ROSE/AVRIL ROSE.jpg",
+            "/assets/AVRIL ROSE/30 ML.jpg",
+            "/assets/AVRIL ROSE/50 ML.jpg",
+            "/assets/AVRIL ROSE/AVRIL.jpg"
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
@@ -70,12 +70,12 @@ export const products = [
     o Kesan: Ini adalah "jiwa" dari Baccarat. Memberikan aroma hangat, mineral, dan sedikit nuansa "gula terbakar" atau permen kapas yang sangat dewasa dan berkelas.
     * Base Notes: Fir Resin (Getah Pohon Fir) dan Cedar (Kayu Aras).
     o Kesan: Memberikan nuansa kayu yang bersih, segar, dan menyeimbangkan rasa manis dari notes sebelumnya.`,
-        image: "/assets/BACCARAT/50 ML.png",
+        image: "/assets/BACCARAT/50 ML.jpg",
         gallery: [
-            "/assets/BACCARAT/50 ML.png",
-            "/assets/BACCARAT/BACCARAT.png",
-            "/assets/BACCARAT/30 ML.png",
-            "/assets/BACCARAT/BACCARAT R.png"
+            "/assets/BACCARAT/50 ML.jpg",
+            "/assets/BACCARAT/Baccarat Home.jpg",
+            "/assets/BACCARAT/30 ML.jpg",
+            "/assets/BACCARAT/BACCARAT.jpg"
         ],
         sizes: ["30ml", "50ml"],
         category: "Unisex",
@@ -99,12 +99,12 @@ export const products = [
     * Kesan: Inilah jantung dari Black Opium. Aroma kopi yang intens memberikan efek "adrenaline rush" yang unik dan sensual.
     * Base Notes (Aroma Akhir): Vanilla, Patchouli, Cashmere Wood, dan Cedar.
     * Kesan: Penutup yang sangat manis, hangat, creamy, dan memberikan kesan mewah yang tahan lama.`,
-        image: "/assets/BLACK OPIUM/Black Opium.png",
+        image: "/assets/BLACK OPIUM/Black Opium.jpg",
         gallery: [
-            "/assets/BLACK OPIUM/Black Opium.png",
-            "/assets/BLACK OPIUM/30ML.png",
-            "/assets/BLACK OPIUM/50ML.png",
-            "/assets/BLACK OPIUM/BLACK OPIUM1.png"
+            "/assets/BLACK OPIUM/Black Opium.jpg",
+            "/assets/BLACK OPIUM/30ML.jpg",
+            "/assets/BLACK OPIUM/50ML.jpg",
+            "/assets/BLACK OPIUM/BLACK OPIUM1.jpg"
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
@@ -127,11 +127,11 @@ export const products = [
     * Top Notes: Lemon Zest, Bergamot, Mint, Artemisia
     * Heart Notes: Lavender, Geranium, Nanas, Green Notes
     * Base Notes: Sandalwood (Cendana), Cedar, Amberwood, Tonka Bean`,
-        image: "/assets/BLUE CHANEL/HOME.png",
+        image: "/assets/BLUE CHANEL/HOME.jpg",
         gallery: [
-            "/assets/BLUE CHANEL/HOME.png",
-            "/assets/BLUE CHANEL/blue channel.png",
-            "/assets/BLUE CHANEL/BLUE CHANEL 50ML.png"
+            "/assets/BLUE CHANEL/HOME.jpg",
+            "/assets/BLUE CHANEL/blue channel.jpg",
+            "/assets/BLUE CHANEL/BLUE CHANEL 50ML.jpg"
         ],
         sizes: ["30ml", "50ml"],
         category: "Men",
@@ -150,12 +150,12 @@ export const products = [
     Top Notes: Mandarin Orange, Petitgrain
     Heart Notes: Seaweed (Rumput Laut), Lavender
     Base Notes: Amber, Virginia Cedar, Woodsy Notes, Clary Sage`,
-        image: "/assets/BULGARI AQUA/50 ML.png",
+        image: "/assets/BULGARI AQUA/50 ML.jpg",
         gallery: [
-            "/assets/BULGARI AQUA/50 ML.png",
-            "/assets/BULGARI AQUA/30 ML.png",
-            "/assets/BULGARI AQUA/bulgari aqua.png",
-            "/assets/BULGARI AQUA/1.png"
+            "/assets/BULGARI AQUA/50 ML.jpg",
+            "/assets/BULGARI AQUA/30 ML.jpg",
+            "/assets/BULGARI AQUA/bulgari aqua.jpg",
+            "/assets/BULGARI AQUA/1.jpg"
         ],
         sizes: ["30ml", "50ml"],
         category: "Men",
@@ -178,11 +178,11 @@ export const products = [
     * Musim Terbaik: Musim Panas Memberikan kesegaran "asam manis" yang mendinginkan.
     * Musim Dingin/Liburan: Sering diasosiasikan dengan suasana Natal dan Thanksgiving (hangat namun buah).
     * Kombinasi Umum: Sering dipasangkan dengan Lemon, Teh Putih, Mawar, atau Kayu-kayuan.`,
-        image: "/assets/CRANBERRY/50 ML.png",
+        image: "/assets/CRANBERRY/50 ML.jpg",
         gallery: [
-            "/assets/CRANBERRY/50 ML.png",
-            "/assets/CRANBERRY/CRABERRY HOME.png",
-            "/assets/CRANBERRY/CRANBERRY.png"
+            "/assets/CRANBERRY/50 ML.jpg",
+            "/assets/CRANBERRY/CRABERRY HOME.jpg",
+            "/assets/CRANBERRY/CRANBERRY.jpg"
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
@@ -205,12 +205,12 @@ export const products = [
     * Middle Notes (Aroma Tengah): Aroma Laut (Sea Notes), Jeruk, dan Kayu Rosewood.
     * Base Notes (Aroma Akhir): Kacang Tonka (Tonka Bean), Amber, Musk, dan Benzoin.
     * Kesan: Aromanya sangat segar seperti baru selesai mandi. Perpaduan antara buah lengkeng yang manis dan aroma laut membuatnya tidak membosankan. Sangat cocok untuk cuaca panas di Indonesia, penggunaan di kantor, atau saat berolahraga.`,
-        image: "/assets/DHNL BLUE/50 ML.png",
+        image: "/assets/DHNL BLUE/50 ML.jpg",
         gallery: [
-            "/assets/DHNL BLUE/50 ML.png",
-            "/assets/DHNL BLUE/30 ML.png",
-            "/assets/DHNL BLUE/DHNL Blue Home.png",
-            "/assets/DHNL BLUE/DHNL BLUE.png"
+            "/assets/DHNL BLUE/50 ML.jpg",
+            "/assets/DHNL BLUE/30 ML.jpg",
+            "/assets/DHNL BLUE/DHNL Blue Home.jpg",
+            "/assets/DHNL BLUE/DHNL BLUE.jpg"
         ],
         sizes: ["30ml", "50ml"],
         category: "Men",
@@ -232,12 +232,12 @@ export const products = [
     Top Notes: Apel Merah, Bergamot, Cardamom
     Heart Notes: Rose (Mawar), Geranium, Jasmine
     Base Notes: Patchouli, Sandalwood, Tonka Bean, Vanilla, Musk`,
-        image: "/assets/DHNL LONDON/50 ML.png",
+        image: "/assets/DHNL LONDON/50 ML.jpg",
         gallery: [
-            "/assets/DHNL LONDON/DHNL LONDON 10.png",
-            "/assets/DHNL LONDON/30 ML.png",
-            "/assets/DHNL LONDON/50 ML.png",
-            "/assets/DHNL LONDON/1.png"
+            "/assets/DHNL LONDON/DHNL LONDON 10.jpg",
+            "/assets/DHNL LONDON/30 ML.jpg",
+            "/assets/DHNL LONDON/50 ML.jpg",
+            "/assets/DHNL LONDON/1.jpg"
         ],
         sizes: ["30ml", "50ml"],
         category: "Men",
@@ -259,11 +259,11 @@ export const products = [
     Top Notes: Lavender, Martini, Bergamot, Mandarin Orange, Rosewood
     Heart Notes: Patchouli, Orchid (Anggrek), Narcissus
     Base Notes: Musk, Woodsy Notes, Cedar, White Amber`,
-        image: "/assets/LOVELY/LOVELY.png",
+        image: "/assets/LOVELY/LOVELY.jpg",
         gallery: [
-            "/assets/LOVELY/LOVELY.png",
-            "/assets/LOVELY/30 ML.png",
-            "/assets/LOVELY/50 ML.png",
+            "/assets/LOVELY/LOVELY.jpg",
+            "/assets/LOVELY/30 ML.jpg",
+            "/assets/LOVELY/50 ML.jpg",
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
@@ -285,12 +285,12 @@ export const products = [
     Top Notes: Timun (Cucumber), Mandarin Orange
     Heart Notes: Jasmine (Melati), Water Hyacinth
     Base Notes: Musk, Woody Notes`,
-        image: "/assets/ROMAN WISH/ROMAN WISH.png",
+        image: "/assets/ROMAN WISH/ROMAN WISH.jpg",
         gallery: [
-            "/assets/ROMAN WISH/ROMAN WISH.png",
-            "/assets/ROMAN WISH/30 ML.png",
-            "/assets/ROMAN WISH/50 ML.png",
-            "/assets/ROMAN WISH/roman wish 0.png"
+            "/assets/ROMAN WISH/ROMAN WISH.jpg",
+            "/assets/ROMAN WISH/30 ML.jpg",
+            "/assets/ROMAN WISH/50 ML.jpg",
+            "/assets/ROMAN WISH/roman wish 0.jpg"
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
@@ -312,11 +312,11 @@ export const products = [
     Top Notes: Raspberry Liqueur
     Heart Notes: Black Peony (Bunga Peony Hitam)
     Base Notes: Praline`,
-        image: "/assets/SCANDAL/50 ML.png",
+        image: "/assets/SCANDAL/50 ML.jpg",
         gallery: [
-            "/assets/SCANDAL/SCANDAL.png",
-            "/assets/SCANDAL/30 ML.png",
-            "/assets/SCANDAL/50 ML.png"
+            "/assets/SCANDAL/SCANDAL.jpg",
+            "/assets/SCANDAL/30 ML.jpg",
+            "/assets/SCANDAL/50 ML.jpg"
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
@@ -337,11 +337,11 @@ export const products = [
     * Manis & Lembut: Tidak menyengat, biasanya didominasi vanila atau buah beri.
     * Feminin: Memberikan kesan gadis yang manis, romantis, namun tetap rapi.
     * Mass-Pleasing: Sangat mudah disukai oleh siapa saja, cocok untuk sekolah, kuliah, atau bekerja.`,
-        image: "/assets/TAYLOR SWIFT/50 ML.png",
+        image: "/assets/TAYLOR SWIFT/50 ML.jpg",
         gallery: [
-            "/assets/TAYLOR SWIFT/TAYLOR SWIFT.png",
-            "/assets/TAYLOR SWIFT/30 ML.png",
-            "/assets/TAYLOR SWIFT/50 ML.png",
+            "/assets/TAYLOR SWIFT/TAYLOR SWIFT.jpg",
+            "/assets/TAYLOR SWIFT/30 ML.jpg",
+            "/assets/TAYLOR SWIFT/50 ML.jpg",
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
@@ -360,11 +360,11 @@ export const products = [
     Top Notes: Mint leaves, Italian Lemon Zest, Green Apple.
     Middle Notes: Tonka Beans, Amber, Geranium Flower, Vanilla.
     Base Notes: Cedarwood from Atlas and Virginia, Vetyver, Oak Moss.`,
-        image: "/assets/VERCASE EROS/VERCASE 50ML.png",
+        image: "/assets/VERCASE EROS/VERCASE 50ML.jpg",
         gallery: [
-            "/assets/VERCASE EROS/VERCASE EROS.png",
-            "/assets/VERCASE EROS/30 ML.png",
-            "/assets/VERCASE EROS/VERCASE 50ML.png"
+            "/assets/VERCASE EROS/VERCASE EROS.jpg",
+            "/assets/VERCASE EROS/30 ML.jpg",
+            "/assets/VERCASE EROS/VERCASE 50ML.jpg"
         ],
         sizes: ["30ml", "50ml"],
         category: "Men",
