@@ -22,17 +22,33 @@ const ProductSection = () => {
           </div>
         </header>
 
-        {/* Editorial Grid - Alternating Sizes */}
+        {/* Dynamic Magazine-Style Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-20">
           {products.map((product, index) => {
-             // Create a varied grid pattern
-             const isLarge = index % 3 === 0;
-             const colSpan = isLarge ? "lg:col-span-8" : "lg:col-span-4";
+             // Create a more varied and dynamic grid pattern
+             const isLarge = index % 4 === 0; // Every 4th item is large
+             const isMedium = index % 5 === 0; // Every 5th item is medium
+             const isTall = index % 3 === 0 && index % 4 !== 0; // Every 3rd item (but not if it's also large) is tall
+
+             let colSpan = "lg:col-span-4"; // Default small card
+             if (isLarge) colSpan = "lg:col-span-8"; // Large card
+             else if (isMedium) colSpan = "lg:col-span-6"; // Medium card
+             else if (isTall) colSpan = "lg:col-span-4"; // Tall card (same width but different styling)
+
              const offset = index % 2 !== 0 ? "lg:translate-y-12" : "";
+             const rotate = index % 7 === 0 ? "lg:rotate-1" : index % 11 === 0 ? "lg:-rotate-1" : "";
 
              return (
-              <div key={product.id} className={`${colSpan} ${offset}`}>
-                <ProductCard product={product} isLarge={isLarge} />
+              <div
+                key={product.id}
+                className={`${colSpan} ${offset} ${rotate} transition-transform duration-700 hover:translate-y-[-10px]`}
+              >
+                <ProductCard
+                  product={product}
+                  isLarge={isLarge}
+                  isMedium={isMedium}
+                  isTall={isTall}
+                />
               </div>
              );
           })}

@@ -3,7 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowUpRight, Sparkles, Droplet } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const ProductCard = ({ product, isLarge }) => {
+const ProductCard = ({ product, isLarge, isMedium, isTall }) => {
   const cardRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -66,21 +66,32 @@ const ProductCard = ({ product, isLarge }) => {
       style={{ perspective: 1000 }}
     >
       <Link to={`/product/${product.id}`} className="block h-full">
-        <motion.div 
-          style={{ 
-            rotateX, 
+        <motion.div
+          style={{
+            rotateX,
             rotateY,
             transformStyle: 'preserve-3d'
           }}
-          className={`relative overflow-hidden bg-gradient-to-br from-charcoal via-charcoal/95 to-onyx h-full flex flex-col ${isLarge ? 'min-h-[500px]' : 'min-h-[600px]'} transition-shadow duration-500 ${isHovered ? 'shadow-2xl shadow-gold-200/10' : ''}`}
+          animate={{
+            y: [-5, 5, -5],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className={`relative overflow-hidden bg-gradient-to-br from-charcoal via-charcoal/95 to-onyx h-full flex flex-col ${isLarge ? 'min-h-[600px]' : isMedium ? 'min-h-[500px]' : isTall ? 'min-h-[700px]' : 'min-h-[400px]'} transition-all duration-500 ${isHovered ? 'shadow-2xl shadow-gold-200/10 translate-z-10' : ''}`}
         >
-          
-          {/* Animated Border Glow */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${glowColor} opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl`} />
-          <div className="absolute inset-0 border border-white/5 group-hover:border-gold-200/30 transition-colors duration-500" />
-          
-          {/* Category Badge with Icon */}
-          <motion.div 
+
+          {/* Enhanced Animated Border Glow */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${glowColor} opacity-0 group-hover:opacity-30 transition-opacity duration-700 blur-xl scale-110`} />
+          <div className="absolute inset-0 border border-white/5 group-hover:border-gold-200/30 transition-all duration-500" />
+
+          {/* Enhanced Glass Effect */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
+
+          {/* Category Badge with Enhanced Animation */}
+          <motion.div
             className="absolute top-6 left-6 z-20"
             initial={{ x: -20, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -92,40 +103,46 @@ const ProductCard = ({ product, isLarge }) => {
             </div>
           </motion.div>
 
-          {/* Image Container */}
-          <div className="relative flex-1 flex items-center justify-center p-12 overflow-hidden">
-            {/* Animated Radial Glow */}
-            <motion.div 
-              className={`absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] ${glowColor} opacity-0 group-hover:opacity-100 transition-opacity duration-700`}
-              animate={isHovered ? { scale: [1, 1.2, 1] } : {}}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            
-            {/* Product Image with 3D Transform */}
-            <motion.img 
-              src={product.image} 
-              alt={product.name}
-              loading="lazy"
-              decoding="async"
-              style={{ transformStyle: 'preserve-3d', transform: 'translateZ(40px)' }}
-              className="relative z-10 max-w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-110"
+          {/* Enhanced Image Container with Floating Effect */}
+          <div className={`relative flex-1 flex items-center justify-center ${isLarge ? 'p-16' : isMedium ? 'p-14' : isTall ? 'p-20' : 'p-10'} overflow-hidden`}>
+            {/* Enhanced Animated Radial Glow */}
+            <motion.div
+              className={`absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] ${glowColor} opacity-0 group-hover:opacity-20 transition-opacity duration-700`}
+              animate={isHovered ? { scale: [1, 1.5, 1], rotate: [0, 5, 0] } : {}}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
             />
 
-            {/* Diagonal Light Sweep */}
-            <motion.div 
-              className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent"
-              initial={{ x: '-100%', y: '-100%' }}
-              animate={isHovered ? { x: '100%', y: '100%' } : {}}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
+            {/* Enhanced Product Image with Floating Animation */}
+            <motion.div
+              className="relative z-10"
+              animate={isHovered ? { y: [-10, 10, -10] } : {}}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <motion.img
+                src={product.image}
+                alt={product.name}
+                loading="lazy"
+                decoding="async"
+                style={{ transformStyle: 'preserve-3d', transform: 'translateZ(40px)' }}
+                className="max-w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            </motion.div>
+
+            {/* Enhanced Diagonal Light Sweep */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-tr from-transparent via-gold-200/10 to-transparent"
+              initial={{ x: '-100%', y: '-100%', opacity: 0 }}
+              animate={isHovered ? { x: '100%', y: '100%', opacity: 0.7 } : { opacity: 0 }}
+              transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
             />
 
-            {/* Floating Scent Notes Preview */}
+            {/* Enhanced Floating Scent Notes Preview */}
             {(notes.top || notes.heart) && (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-                className="absolute top-6 right-6 bg-black/80 backdrop-blur-xl border border-gold-200/30 p-4 rounded-sm max-w-[200px] z-30"
+                initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                animate={isHovered ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className="absolute top-6 right-6 bg-black/80 backdrop-blur-xl border border-gold-200/30 p-4 rounded-sm max-w-[200px] z-30 shadow-lg shadow-black/50"
                 style={{ transformStyle: 'preserve-3d', transform: 'translateZ(60px)' }}
               >
                 <div className="flex items-center gap-2 mb-2">
@@ -146,25 +163,34 @@ const ProductCard = ({ product, isLarge }) => {
             )}
           </div>
 
-          {/* Info Panel with Magnetic Effect */}
+          {/* Enhanced Info Panel */}
           <div className="relative mt-auto" style={{ transformStyle: 'preserve-3d', transform: 'translateZ(20px)' }}>
-            <div className="h-px bg-gradient-to-r from-transparent via-gold-200/50 to-transparent group-hover:via-gold-200 transition-colors duration-500" />
-            
-            <div className="p-6 bg-gradient-to-t from-black/60 to-transparent backdrop-blur-sm">
+            <div className="h-px bg-gradient-to-r from-transparent via-gold-200/50 to-transparent group-hover:via-gold-200 transition-all duration-500" />
+
+            <div className="p-6 bg-gradient-to-t from-black/70 via-black/40 to-transparent backdrop-blur-sm">
               <div className="flex items-end justify-between gap-4">
                 <div className="flex-1">
-                  <h3 className="text-2xl md:text-3xl font-serif text-white mb-2 leading-tight group-hover:text-gold-200 transition-colors duration-300">
+                  <motion.h3
+                    className="text-2xl md:text-3xl font-serif text-white mb-2 leading-tight transition-colors duration-300"
+                    whileHover={{ color: "#D4AF37" }}
+                  >
                     {product.name}
-                  </h3>
+                  </motion.h3>
                   <p className="text-gray-500 text-xs uppercase tracking-[0.3em] font-light">
                     Extrait de Parfum
                   </p>
                 </div>
 
-                {/* Animated Action Icon */}
-                <motion.div 
-                  className="w-12 h-12 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white group-hover:bg-gold-200 group-hover:text-black group-hover:border-gold-200 transition-all duration-300"
-                  whileHover={{ scale: 1.1, rotate: 90 }}
+                {/* Enhanced Animated Action Icon */}
+                <motion.div
+                  className="w-12 h-12 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white transition-all duration-300"
+                  whileHover={{
+                    scale: 1.2,
+                    rotate: 90,
+                    backgroundColor: "#D4AF37",
+                    color: "#000",
+                    borderColor: "#D4AF37"
+                  }}
                   transition={{ type: "spring", stiffness: 400 }}
                   style={{ transformStyle: 'preserve-3d', transform: 'translateZ(80px)' }}
                 >
@@ -174,21 +200,24 @@ const ProductCard = ({ product, isLarge }) => {
             </div>
           </div>
 
-          {/* Size Badges - Slide in from bottom */}
-          <motion.div 
+          {/* Enhanced Size Badges with Floating Animation */}
+          <motion.div
             className="absolute bottom-24 right-6 flex gap-2 z-20"
-            initial={{ y: 20, opacity: 0 }}
-            animate={isHovered ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
+            initial={{ y: 20, opacity: 0, scale: 0.8 }}
+            animate={isHovered ? { y: 0, opacity: 1, scale: 1 } : { y: 20, opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
             style={{ transformStyle: 'preserve-3d', transform: 'translateZ(60px)' }}
           >
             {product.sizes.map((size, idx) => (
-              <div 
+              <motion.div
                 key={idx}
                 className="bg-black/70 backdrop-blur-md border border-gold-200/30 px-3 py-1 text-[10px] text-gold-200 uppercase tracking-widest rounded-full"
+                initial={{ y: 10, opacity: 0 }}
+                animate={isHovered ? { y: 0, opacity: 1 } : { y: 10, opacity: 0 }}
+                transition={{ delay: 0.4 + (idx * 0.1) }}
               >
                 {size}
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </motion.div>
