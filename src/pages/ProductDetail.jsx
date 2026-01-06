@@ -26,31 +26,15 @@ const ProductDetail = () => {
   const extractHighlights = (desc) => {
       const lines = desc.split('\n').map(l => l.trim()).filter(l => l);
       let highlights = [];
-      let inHighlightsSection = false;
 
       lines.forEach(line => {
-          const lowerLine = line.toLowerCase();
-
-          // Start collecting highlights after "Keunggulan Produk" or similar
-          if (lowerLine.includes('keunggulan produk') || lowerLine.includes('benefit') || lowerLine.includes('highlights')) {
-              inHighlightsSection = true;
-              return;
-          }
-
-          // Stop collecting if we reach notes section
-          if (lowerLine.includes('top notes') || lowerLine.includes('heart notes') ||
-              lowerLine.includes('middle notes') || lowerLine.includes('base notes') ||
-              lowerLine.includes('aroma awal') || lowerLine.includes('aroma tengah') ||
-              lowerLine.includes('aroma akhir')) {
-              inHighlightsSection = false;
-              return;
-          }
-
-          // Collect bullet points that follow the highlights indicator
+          // Collect bullet points that are actual highlights/benefits
           if (line.startsWith('*')) {
               const cleanHighlight = line.replace(/\*/g, '').trim();
-              // Skip the "Keunggulan Produk" line itself if it's a bullet
-              if (!lowerLine.includes('keunggulan produk') && cleanHighlight) {
+              // Skip the "Keunggulan Produk" line itself, only keep the actual benefits
+              if (!cleanHighlight.toLowerCase().includes('keunggulan produk') &&
+                  !cleanHighlight.toLowerCase().includes('extrait de parfum - konsentrasi tinggi') &&
+                  cleanHighlight) {
                   highlights.push(cleanHighlight);
               }
           }
