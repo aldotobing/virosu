@@ -26,10 +26,33 @@ const ProductDetail = () => {
   const extractHighlights = (desc) => {
       const lines = desc.split('\n').map(l => l.trim()).filter(l => l);
       let highlights = [];
+      let inHighlightsSection = false;
 
       lines.forEach(line => {
+          const lowerLine = line.toLowerCase();
+
+          // Start collecting highlights after "Keunggulan Produk" or similar
+          if (lowerLine.includes('keunggulan produk') || lowerLine.includes('benefit') || lowerLine.includes('highlights')) {
+              inHighlightsSection = true;
+              return;
+          }
+
+          // Stop collecting if we reach notes section
+          if (lowerLine.includes('top notes') || lowerLine.includes('heart notes') ||
+              lowerLine.includes('middle notes') || lowerLine.includes('base notes') ||
+              lowerLine.includes('aroma awal') || lowerLine.includes('aroma tengah') ||
+              lowerLine.includes('aroma akhir')) {
+              inHighlightsSection = false;
+              return;
+          }
+
+          // Collect bullet points that follow the highlights indicator
           if (line.startsWith('*')) {
-              highlights.push(line.replace(/\*/g, '').trim());
+              const cleanHighlight = line.replace(/\*/g, '').trim();
+              // Skip the "Keunggulan Produk" line itself if it's a bullet
+              if (!lowerLine.includes('keunggulan produk') && cleanHighlight) {
+                  highlights.push(cleanHighlight);
+              }
           }
       });
 
@@ -141,37 +164,37 @@ const ProductDetail = () => {
             )}
 
             {/* Olfactory Pyramid (Notes) */}
-            {(notes.top !== undefined || notes.heart !== undefined || notes.base !== undefined) && (
+            {(notes.top || notes.heart || notes.base) && (
                 <div className="mb-8 md:mb-12 p-5 md:p-6 bg-white/5 rounded-sm border border-white/5 backdrop-blur-sm relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gold-200/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-gold-200/10 transition-colors duration-700" />
 
                     <h3 className="text-white font-serif text-lg md:text-xl mb-5 md:mb-6 relative z-10">Olfactory Notes</h3>
 
                     <div className="space-y-4 md:space-y-6 relative z-10">
-                        {notes.top !== undefined && (
+                        {notes.top && (
                             <div className="flex gap-3 md:gap-4">
                                 <div className="mt-0.5 md:mt-1 p-1.5 md:p-2 bg-charcoal rounded-full h-fit text-gold-200 shrink-0"><Wind size={16} className="md:w-[18px] md:h-[18px]" /></div>
                                 <div className="flex-1 min-w-0">
                                     <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 block mb-1">Top Notes</span>
-                                    <p className="text-white font-light text-sm break-words">{notes.top || 'Not specified'}</p>
+                                    <p className="text-white font-light text-sm break-words">{notes.top}</p>
                                 </div>
                             </div>
                         )}
-                        {notes.heart !== undefined && (
+                        {notes.heart && (
                             <div className="flex gap-3 md:gap-4">
                                 <div className="mt-0.5 md:mt-1 p-1.5 md:p-2 bg-charcoal rounded-full h-fit text-gold-200 shrink-0"><Droplets size={16} className="md:w-[18px] md:h-[18px]" /></div>
                                 <div className="flex-1 min-w-0">
                                     <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 block mb-1">Heart Notes</span>
-                                    <p className="text-white font-light text-sm break-words">{notes.heart || 'Not specified'}</p>
+                                    <p className="text-white font-light text-sm break-words">{notes.heart}</p>
                                 </div>
                             </div>
                         )}
-                         {notes.base !== undefined && (
+                         {notes.base && (
                             <div className="flex gap-3 md:gap-4">
                                 <div className="mt-0.5 md:mt-1 p-1.5 md:p-2 bg-charcoal rounded-full h-fit text-gold-200 shrink-0"><Layers size={16} className="md:w-[18px] md:h-[18px]" /></div>
                                 <div className="flex-1 min-w-0">
                                     <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 block mb-1">Base Notes</span>
-                                    <p className="text-white font-light text-sm break-words">{notes.base || 'Not specified'}</p>
+                                    <p className="text-white font-light text-sm break-words">{notes.base}</p>
                                 </div>
                             </div>
                         )}
