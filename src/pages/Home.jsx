@@ -33,34 +33,34 @@ const Home = () => {
             </div>
 
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-sm">
-              <h3 className="text-gold-200 font-serif text-xl mb-6 border-b border-white/10 pb-3">What Makes Us Different</h3>
+              <h3 className="text-gold-200 font-serif text-xl mb-6 border-b border-white/10 pb-3">Yang Membuat Kami Berbeda</h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <span className="text-gold-200 text-2xl">•</span>
                   <div>
                     <span className="text-white font-medium block mb-1">Extrait de Parfum</span>
-                    <span className="text-gray-400 text-sm">Highest concentration for lasting impression</span>
+                    <span className="text-gray-400 text-sm">Konsentrasi tertinggi untuk kesan tahan lama</span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-gold-200 text-2xl">•</span>
                   <div>
-                    <span className="text-white font-medium block mb-1">Premium High-Grade Ingredients</span>
-                    <span className="text-gray-400 text-sm">Only the finest oils and essences</span>
+                    <span className="text-white font-medium block mb-1">Bahan Premium Berkualitas Tinggi</span>
+                    <span className="text-gray-400 text-sm">Hanya minyak dan esensi terbaik</span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-gold-200 text-2xl">•</span>
                   <div>
-                    <span className="text-white font-medium block mb-1">12-24 Hour Longevity</span>
-                    <span className="text-gray-400 text-sm">All-day elegance, unmatched performance</span>
+                    <span className="text-white font-medium block mb-1">Daya Tahan 12-24 Jam</span>
+                    <span className="text-gray-400 text-sm">Elegan sepanjang hari, kinerja tak tertandingi</span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-gold-200 text-2xl">•</span>
                   <div>
-                    <span className="text-white font-medium block mb-1">Exclusive & Bold Character</span>
-                    <span className="text-gray-400 text-sm">More than a scent—it's your identity</span>
+                    <span className="text-white font-medium block mb-1">Karakter Eksklusif & Berani</span>
+                    <span className="text-gray-400 text-sm">Lebih dari sekadar aroma—ini adalah identitas Anda</span>
                   </div>
                 </li>
               </ul>
