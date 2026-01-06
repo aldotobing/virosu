@@ -40,8 +40,21 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-onyx">
       
-      {/* Animated Background Gradient Orbs */}
+      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
+        {/* Mobile Background Image - Super Transparent with Dark Overlay */}
+        <div className="md:hidden absolute inset-0 z-0">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: "url('/assets/landscape-img.png')",
+              opacity: 0.2
+            }}
+          />
+          <div className="absolute inset-0 bg-onyx/80" />
+        </div>
+
+        {/* Desktop Gradient Orbs */}
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
