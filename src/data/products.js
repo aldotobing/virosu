@@ -3,15 +3,16 @@ export const products = [
         id: 1,
         name: "1 Million Man",
         description: `Virosu 1 Million Man Extrait De Parfum
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
-    * Diproduksi dengan bahan berkualitas tinggi
-    
-    * Top Notes (Aroma Awal): Jeruk Mandarin Darah (Blood Mandarin), Grapefruit, dan Mint yang segar.
-    * Heart Notes (Aroma Tengah): Kayu Manis (Cinnamon), Aroma Rempah, dan Mawar.
-    * Base Notes (Aroma Akhir): Amber, Kulit (Leather), Kayu-kayuan, dan Nilam (Patchouli) India.`,
+    * Diproduksi dengan bahan berkualitas tinggi`,
+        notes: {
+            top: "Jeruk Mandarin Darah (Blood Mandarin), Grapefruit, dan Mint yang segar",
+            heart: "Kayu Manis (Cinnamon), Aroma Rempah, dan Mawar",
+            base: "Amber, Kulit (Leather), Kayu-kayuan, dan Nilam (Patchouli) India"
+        },
         image: "/assets/1 MILLION MAN/50 ML.jpg",
         gallery: [
             "/assets/1 MILLION MAN/50 ML.jpg",
@@ -27,20 +28,21 @@ export const products = [
         id: 2,
         name: "Avril Rose",
         description: `Virosu Avril Forbidden Rose Extrait De Parfum
-    
+
     Parfum ini diluncurkan pada tahun 2010 dan termasuk dalam kategori Floral Fruity Gourmand. Meskipun namanya "Rose", parfum ini unik karena tidak mengandung aroma mawar sama sekali.
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
     * Diproduksi dengan bahan berkualitas tinggi
-    
+
     * Karakter Aroma: Feminin, manis (tapi tidak berlebihan), dan sedikit misterius.
-    * Top Notes (Aroma Awal): Apel Merah, Peach (Persik), dan Bourbon Pepper.
-    * Middle Notes (Aroma Tengah): Bunga Teratai (Lotus), Heliotrope, dan Apel Hijau.
-    * Base Notes (Aroma Akhir): Cokelat Meksiko, Vanila, dan Kayu Cendana (Sandalwood).
-    
     * Kesan: Aroma dibuka dengan kesegaran buah apel yang bersih, lalu perlahan berubah menjadi aroma cokelat dan vanila yang lembut dan hangat di kulit. Cocok untuk remaja hingga dewasa muda untuk penggunaan sehari-hari atau sekolah.`,
+        notes: {
+            top: "Apel Merah, Peach (Persik), dan Bourbon Pepper",
+            heart: "Bunga Teratai (Lotus), Heliotrope, dan Apel Hijau",
+            base: "Cokelat Meksiko, Vanila, dan Kayu Cendana (Sandalwood)"
+        },
         image: "/assets/AVRIL ROSE/AVRIL ROSE.jpg",
         gallery: [
             "/assets/AVRIL ROSE/AVRIL ROSE.jpg",
@@ -56,20 +58,22 @@ export const products = [
         id: 3,
         name: "Baccarat",
         description: `Virosu Baccarat Rouge 540 (BR540) Extrait De Parfum
-    
+
     BR540 dikenal karena perpaduan ambery-woody yang sangat halus dan memberikan efek "melayang" (airy):
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
     * Diproduksi dengan bahan berkualitas tinggi
-    
-    * Top Notes: Saffron (Safron) dan Melati (Jasmine Grandiflorum).
+
     o Kesan: Memberikan pembukaan yang mewah dengan sedikit sentuhan rempah eksotis dan manis bunga yang lembut.
-    * Middle Notes: Amberwood dan Ambergris.
     o Kesan: Ini adalah "jiwa" dari Baccarat. Memberikan aroma hangat, mineral, dan sedikit nuansa "gula terbakar" atau permen kapas yang sangat dewasa dan berkelas.
-    * Base Notes: Fir Resin (Getah Pohon Fir) dan Cedar (Kayu Aras).
     o Kesan: Memberikan nuansa kayu yang bersih, segar, dan menyeimbangkan rasa manis dari notes sebelumnya.`,
+        notes: {
+            top: "Saffron (Safron) dan Melati (Jasmine Grandiflorum)",
+            heart: "Amberwood dan Ambergris",
+            base: "Fir Resin (Getah Pohon Fir) dan Cedar (Kayu Aras)"
+        },
         image: "/assets/BACCARAT/50 ML.jpg",
         gallery: [
             "/assets/BACCARAT/50 ML.jpg",
@@ -85,20 +89,22 @@ export const products = [
         id: 4,
         name: "Black Opium",
         description: `Virosu Black Opium Extrait De Parfum
-    
+
     Black Opium adalah wewangian berjenis Amber Vanilla (atau sering disebut Floral Gourmand).
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
     * Diproduksi dengan bahan berkualitas tinggi
-    
-    * Top Notes (Aroma Awal): Pir (Pear), Lada Merah Muda (Pink Pepper), dan Bunga Jeruk (Orange Blossom).
+
     * Kesan: Segar, sedikit manis buah, dengan sentuhan rempah yang menggigit.
-    * Heart Notes (Aroma Tengah): Kopi (Coffee), Melati (Jasmine), Bitter Almond, dan Licorice
     * Kesan: Inilah jantung dari Black Opium. Aroma kopi yang intens memberikan efek "adrenaline rush" yang unik dan sensual.
-    * Base Notes (Aroma Akhir): Vanilla, Patchouli, Cashmere Wood, dan Cedar.
     * Kesan: Penutup yang sangat manis, hangat, creamy, dan memberikan kesan mewah yang tahan lama.`,
+        notes: {
+            top: "Pir (Pear), Lada Merah Muda (Pink Pepper), dan Bunga Jeruk (Orange Blossom)",
+            heart: "Kopi (Coffee), Melati (Jasmine), Bitter Almond, dan Licorice",
+            base: "Vanilla, Patchouli, Cashmere Wood, dan Cedar"
+        },
         image: "/assets/BLACK OPIUM/Black Opium.jpg",
         gallery: [
             "/assets/BLACK OPIUM/Black Opium.jpg",
@@ -114,19 +120,21 @@ export const products = [
         id: 5,
         name: "Blue Chanel",
         description: `Virosu Bleu de Chanel Extrait De Parfum
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
     * Diproduksi dengan bahan berkualitas tinggi
-    
+
     Ringkasan Profil Wewangian
     * Keluarga Aroma: Woody Aromatic (Kayu Aromatik)
     * Karakter: Elegan, halus, padat, dan "biru" (bersih tapi misterius).
-    * Kesan Utama: Pria mapan dengan setelan jas navy; profesional, percaya diri, dan tidak berlebihan.
-    * Top Notes: Lemon Zest, Bergamot, Mint, Artemisia
-    * Heart Notes: Lavender, Geranium, Nanas, Green Notes
-    * Base Notes: Sandalwood (Cendana), Cedar, Amberwood, Tonka Bean`,
+    * Kesan Utama: Pria mapan dengan setelan jas navy; profesional, percaya diri, dan tidak berlebihan.`,
+        notes: {
+            top: "Lemon Zest, Bergamot, Mint, Artemisia",
+            heart: "Lavender, Geranium, Nanas, Green Notes",
+            base: "Sandalwood (Cendana), Cedar, Amberwood, Tonka Bean"
+        },
         image: "/assets/BLUE CHANEL/HOME.jpg",
         gallery: [
             "/assets/BLUE CHANEL/HOME.jpg",
@@ -141,15 +149,16 @@ export const products = [
         id: 6,
         name: "Bulgari Aqua",
         description: `Virosu Bvlgari Aqva Extrait De Parfum
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
-    * Diproduksi dengan bahan berkualitas tinggi
-    
-    Top Notes: Mandarin Orange, Petitgrain
-    Heart Notes: Seaweed (Rumput Laut), Lavender
-    Base Notes: Amber, Virginia Cedar, Woodsy Notes, Clary Sage`,
+    * Diproduksi dengan bahan berkualitas tinggi`,
+        notes: {
+            top: "Mandarin Orange, Petitgrain",
+            heart: "Seaweed (Rumput Laut), Lavender",
+            base: "Amber, Virginia Cedar, Woodsy Notes, Clary Sage"
+        },
         image: "/assets/BULGARI AQUA/50 ML.jpg",
         gallery: [
             "/assets/BULGARI AQUA/50 ML.jpg",
@@ -165,19 +174,24 @@ export const products = [
         id: 7,
         name: "Cranberry",
         description: `Virosu Cranberry Extrait De Parfum
-    
+
     Dalam dunia parfum dikenal karena karakteristiknya yang unik: perpaduan antara rasa manis buah (fruity), rasa asam yang tajam (tart), dan sedikit nuansa pahit.
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
     * Diproduksi dengan bahan berkualitas tinggi
-    
+
     Karakteristik Aroma Cranberry
     * Vibe Utama: Ceria, segar, sedikit seksi, dan membangkitkan semangat.
     * Musim Terbaik: Musim Panas Memberikan kesegaran "asam manis" yang mendinginkan.
     * Musim Dingin/Liburan: Sering diasosiasikan dengan suasana Natal dan Thanksgiving (hangat namun buah).
     * Kombinasi Umum: Sering dipasangkan dengan Lemon, Teh Putih, Mawar, atau Kayu-kayuan.`,
+        notes: {
+            top: "",
+            heart: "",
+            base: ""
+        },
         image: "/assets/CRANBERRY/50 ML.jpg",
         gallery: [
             "/assets/CRANBERRY/50 ML.jpg",
@@ -192,19 +206,21 @@ export const products = [
         id: 8,
         name: "DHNL Blue",
         description: `Virosu DHNL Blue (Inspired by Dunhill Desire Blue) Extrait De Parfum
-    
+
     DHNL Blue adalah sebutan populer di Indonesia untuk parfum inspirasi atau dupe dari Dunhill Desire Blue. Parfum ini sangat disukai karena aromanya yang memberikan kesan "pria bersih" dan segar.
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
     * Diproduksi dengan bahan berkualitas tinggi
-    
+
     * Karakter Aroma: Aquatic (Air), Segar, dan Sedikit Manis Buah.
-    * Top Notes (Aroma Awal): Lengkeng (Litchi), Jeruk Mandarin, Bunga Teratai, dan Bergamot.
-    * Middle Notes (Aroma Tengah): Aroma Laut (Sea Notes), Jeruk, dan Kayu Rosewood.
-    * Base Notes (Aroma Akhir): Kacang Tonka (Tonka Bean), Amber, Musk, dan Benzoin.
     * Kesan: Aromanya sangat segar seperti baru selesai mandi. Perpaduan antara buah lengkeng yang manis dan aroma laut membuatnya tidak membosankan. Sangat cocok untuk cuaca panas di Indonesia, penggunaan di kantor, atau saat berolahraga.`,
+        notes: {
+            top: "Lengkeng (Litchi), Jeruk Mandarin, Bunga Teratai, dan Bergamot",
+            heart: "Aroma Laut (Sea Notes), Jeruk, dan Kayu Rosewood",
+            base: "Kacang Tonka (Tonka Bean), Amber, Musk, dan Benzoin"
+        },
         image: "/assets/DHNL BLUE/50 ML.jpg",
         gallery: [
             "/assets/DHNL BLUE/50 ML.jpg",
@@ -220,18 +236,19 @@ export const products = [
         id: 9,
         name: "DHNL London",
         description: `Virosu Dunhill London Exrait De Parfum
-    
+
     Profil Aroma (Fragrance Notes)
     Parfum ini memiliki karakter Amber Fougere yang memadukan kesegaran buah dengan kehangatan rempah dan kayu.
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
-    * Diproduksi dengan bahan berkualitas tinggi
-    
-    Top Notes: Apel Merah, Bergamot, Cardamom
-    Heart Notes: Rose (Mawar), Geranium, Jasmine
-    Base Notes: Patchouli, Sandalwood, Tonka Bean, Vanilla, Musk`,
+    * Diproduksi dengan bahan berkualitas tinggi`,
+        notes: {
+            top: "Apel Merah, Bergamot, Cardamom",
+            heart: "Rose (Mawar), Geranium, Jasmine",
+            base: "Patchouli, Sandalwood, Tonka Bean, Vanilla, Musk"
+        },
         image: "/assets/DHNL LONDON/50 ML.jpg",
         gallery: [
             "/assets/DHNL LONDON/DHNL LONDON 10.jpg",
@@ -247,18 +264,19 @@ export const products = [
         id: 10,
         name: "Lovely",
         description: `Virosu Lovely Extrait De Parfum
-    
+
     Profil Aroma (Fragrance Notes)
     Lovely dikategorikan sebagai wewangian Floral Woody Musk. Aromanya sering digambarkan sebagai perpaduan antara kemewahan sutra dan kelembutan kulit.
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
-    * Diproduksi dengan bahan berkualitas tinggi
-    
-    Top Notes: Lavender, Martini, Bergamot, Mandarin Orange, Rosewood
-    Heart Notes: Patchouli, Orchid (Anggrek), Narcissus
-    Base Notes: Musk, Woodsy Notes, Cedar, White Amber`,
+    * Diproduksi dengan bahan berkualitas tinggi`,
+        notes: {
+            top: "Lavender, Martini, Bergamot, Mandarin Orange, Rosewood",
+            heart: "Patchouli, Orchid (Anggrek), Narcissus",
+            base: "Musk, Woodsy Notes, Cedar, White Amber"
+        },
         image: "/assets/LOVELY/LOVELY.jpg",
         gallery: [
             "/assets/LOVELY/LOVELY.jpg",
@@ -273,18 +291,19 @@ export const products = [
         id: 11,
         name: "Roman Wish",
         description: `Virosu Roman Wish Extrait De Parfum
-    
+
     Profil Aroma (Fragrance Notes)
     Parfum ini termasuk dalam kategori Floral Fruity (Bunga dan Buah) yang sangat segar dan ceria.
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
-    * Diproduksi dengan bahan berkualitas tinggi
-    
-    Top Notes: Timun (Cucumber), Mandarin Orange
-    Heart Notes: Jasmine (Melati), Water Hyacinth
-    Base Notes: Musk, Woody Notes`,
+    * Diproduksi dengan bahan berkualitas tinggi`,
+        notes: {
+            top: "Timun (Cucumber), Mandarin Orange",
+            heart: "Jasmine (Melati), Water Hyacinth",
+            base: "Musk, Woody Notes"
+        },
         image: "/assets/ROMAN WISH/ROMAN WISH.jpg",
         gallery: [
             "/assets/ROMAN WISH/ROMAN WISH.jpg",
@@ -300,18 +319,19 @@ export const products = [
         id: 12,
         name: "Scandal",
         description: `Virosu Victoria's Secret Scandalous Extrait De Parfum
-    
+
     Profil Aroma (Fragrance Notes)
     Scandalous memiliki struktur yang cukup sederhana namun sangat efektif. Parfum ini termasuk dalam kategori Floral Fruity yang manis dan hangat.
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
-    * Diproduksi dengan bahan berkualitas tinggi
-    
-    Top Notes: Raspberry Liqueur
-    Heart Notes: Black Peony (Bunga Peony Hitam)
-    Base Notes: Praline`,
+    * Diproduksi dengan bahan berkualitas tinggi`,
+        notes: {
+            top: "Raspberry Liqueur",
+            heart: "Black Peony (Bunga Peony Hitam)",
+            base: "Praline"
+        },
         image: "/assets/SCANDAL/50 ML.jpg",
         gallery: [
             "/assets/SCANDAL/SCANDAL.jpg",
@@ -326,17 +346,22 @@ export const products = [
         id: 13,
         name: "Taylor Swift",
         description: `Virosu Taylor Swift Extrait De Parfum
-    
+
     * Keunggulan Produk:
     * Extrait de Parfum - Konsentrasi tinggi, wangi lebih tahan lama (12 jam)
     * Kemasan elegan & premium - Cocok untuk hadiah
     * Diproduksi dengan bahan berkualitas tinggi
-    
+
     Karakter Umum Aroma "Taylor Swift"
     Secara keseluruhan, jika Anda mencari parfum di toko refill dengan nama "Taylor Swift", Anda akan mendapatkan aroma yang:
     * Manis & Lembut: Tidak menyengat, biasanya didominasi vanila atau buah beri.
     * Feminin: Memberikan kesan gadis yang manis, romantis, namun tetap rapi.
     * Mass-Pleasing: Sangat mudah disukai oleh siapa saja, cocok untuk sekolah, kuliah, atau bekerja.`,
+        notes: {
+            top: "",
+            heart: "",
+            base: ""
+        },
         image: "/assets/TAYLOR SWIFT/50 ML.jpg",
         gallery: [
             "/assets/TAYLOR SWIFT/TAYLOR SWIFT.jpg",
@@ -351,15 +376,16 @@ export const products = [
         id: 14,
         name: "Versace Eros",
         description: `Virosu Versace Eros Extrait De Parfum
-    
+
     Love, passion, beauty, and desire. A mythic scent for a modern god, strong and luminous.
-    
+
     * Extrait de Parfum - High concentration, long lasting.
-    * Elegant & Premium packaging.
-    
-    Top Notes: Mint leaves, Italian Lemon Zest, Green Apple.
-    Middle Notes: Tonka Beans, Amber, Geranium Flower, Vanilla.
-    Base Notes: Cedarwood from Atlas and Virginia, Vetyver, Oak Moss.`,
+    * Elegant & Premium packaging.`,
+        notes: {
+            top: "Mint leaves, Italian Lemon Zest, Green Apple",
+            heart: "Tonka Beans, Amber, Geranium Flower, Vanilla",
+            base: "Cedarwood from Atlas and Virginia, Vetyver, Oak Moss"
+        },
         image: "/assets/VERCASE EROS/VERCASE 50ML.jpg",
         gallery: [
             "/assets/VERCASE EROS/VERCASE EROS.jpg",

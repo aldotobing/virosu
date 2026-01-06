@@ -22,44 +22,47 @@ const ProductDetail = () => {
 
   if (!product) return null;
 
-  // --- Parser Logic ---
-  const parseDescription = (desc) => {
+  // --- Extract Highlights from Description ---
+  const extractHighlights = (desc) => {
       const lines = desc.split('\n').map(l => l.trim()).filter(l => l);
-      let intro = [];
       let highlights = [];
-      let notes = { top: '', heart: '', base: '' };
-      
-      let currentSection = 'intro';
 
       lines.forEach(line => {
-          const lowerLine = line.toLowerCase();
-          
-          // Detect Sections
-          if (lowerLine.includes('top notes') || lowerLine.includes('aroma awal')) {
-              notes.top = line.replace(/\*|Top Notes|:|(?:\(.*\))/gi, '').replace('-', '').trim();
-              currentSection = 'notes';
-          } else if (lowerLine.includes('heart notes') || lowerLine.includes('middle notes') || lowerLine.includes('aroma tengah')) {
-              notes.heart = line.replace(/\*|Heart Notes|Middle Notes|:|(?:\(.*\))/gi, '').replace('-', '').trim();
-              currentSection = 'notes';
-          } else if (lowerLine.includes('base notes') || lowerLine.includes('aroma akhir')) {
-              notes.base = line.replace(/\*|Base Notes|:|(?:\(.*\))/gi, '').replace('-', '').trim();
-              currentSection = 'notes';
-          } else if (lowerLine.includes('keunggulan') || lowerLine.includes('benefit')) {
-              currentSection = 'highlights';
-          } else if (line.startsWith('*')) {
-              if (currentSection === 'intro') currentSection = 'highlights'; // Assume bullets in intro are highlights if not labeled
-              if (currentSection === 'highlights') {
-                  highlights.push(line.replace(/\*/g, '').trim());
-              }
-          } else {
-              if (currentSection === 'intro') intro.push(line);
+          if (line.startsWith('*')) {
+              highlights.push(line.replace(/\*/g, '').trim());
           }
       });
 
-      return { intro: intro.join(' '), highlights, notes };
+      return highlights;
   };
 
-  const { intro, highlights, notes } = parseDescription(product.description || '');
+  const highlights = extractHighlights(product.description || '');
+  const notes = product.notes || { top: '', heart: '', base: '' };
+
+  // Extract only the introduction part, excluding notes and other sections
+  const extractIntro = (desc) => {
+    const lines = desc.split('\n').map(l => l.trim()).filter(l => l);
+    let introLines = [];
+
+    for (const line of lines) {
+      const lowerLine = line.toLowerCase();
+      // Stop when we encounter notes or other structured sections
+      if (lowerLine.includes('top notes') || lowerLine.includes('heart notes') ||
+          lowerLine.includes('middle notes') || lowerLine.includes('base notes') ||
+          lowerLine.includes('aroma awal') || lowerLine.includes('aroma tengah') ||
+          lowerLine.includes('aroma akhir') || lowerLine.includes('notes')) {
+        break;
+      }
+      // Skip bullet points (highlights) as they're handled separately
+      if (!line.startsWith('*')) {
+        introLines.push(line);
+      }
+    }
+
+    return introLines.join(' ');
+  };
+
+  const intro = extractIntro(product.description || '');
 
   return (
     <div className="min-h-screen bg-onyx">
@@ -138,37 +141,37 @@ const ProductDetail = () => {
             )}
 
             {/* Olfactory Pyramid (Notes) */}
-            {(notes.top || notes.heart || notes.base) && (
+            {(notes.top !== undefined || notes.heart !== undefined || notes.base !== undefined) && (
                 <div className="mb-8 md:mb-12 p-5 md:p-6 bg-white/5 rounded-sm border border-white/5 backdrop-blur-sm relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gold-200/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-gold-200/10 transition-colors duration-700" />
-                    
+
                     <h3 className="text-white font-serif text-lg md:text-xl mb-5 md:mb-6 relative z-10">Olfactory Notes</h3>
-                    
+
                     <div className="space-y-4 md:space-y-6 relative z-10">
-                        {notes.top && (
+                        {notes.top !== undefined && (
                             <div className="flex gap-3 md:gap-4">
                                 <div className="mt-0.5 md:mt-1 p-1.5 md:p-2 bg-charcoal rounded-full h-fit text-gold-200 shrink-0"><Wind size={16} className="md:w-[18px] md:h-[18px]" /></div>
                                 <div className="flex-1 min-w-0">
                                     <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 block mb-1">Top Notes</span>
-                                    <p className="text-white font-light text-sm break-words">{notes.top}</p>
+                                    <p className="text-white font-light text-sm break-words">{notes.top || 'Not specified'}</p>
                                 </div>
                             </div>
                         )}
-                        {notes.heart && (
+                        {notes.heart !== undefined && (
                             <div className="flex gap-3 md:gap-4">
                                 <div className="mt-0.5 md:mt-1 p-1.5 md:p-2 bg-charcoal rounded-full h-fit text-gold-200 shrink-0"><Droplets size={16} className="md:w-[18px] md:h-[18px]" /></div>
                                 <div className="flex-1 min-w-0">
                                     <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 block mb-1">Heart Notes</span>
-                                    <p className="text-white font-light text-sm break-words">{notes.heart}</p>
+                                    <p className="text-white font-light text-sm break-words">{notes.heart || 'Not specified'}</p>
                                 </div>
                             </div>
                         )}
-                         {notes.base && (
+                         {notes.base !== undefined && (
                             <div className="flex gap-3 md:gap-4">
                                 <div className="mt-0.5 md:mt-1 p-1.5 md:p-2 bg-charcoal rounded-full h-fit text-gold-200 shrink-0"><Layers size={16} className="md:w-[18px] md:h-[18px]" /></div>
                                 <div className="flex-1 min-w-0">
                                     <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 block mb-1">Base Notes</span>
-                                    <p className="text-white font-light text-sm break-words">{notes.base}</p>
+                                    <p className="text-white font-light text-sm break-words">{notes.base || 'Not specified'}</p>
                                 </div>
                             </div>
                         )}
