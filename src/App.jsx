@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import SplashScreen from './components/SplashScreen';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
+import { updateMetaTags } from './utils/metaTags';
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -11,6 +12,25 @@ const ScrollToTop = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
+    return null;
+}
+
+// Reset meta tags when navigating away from product detail
+const ResetMetaTags = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        // Reset meta tags to default when not on product detail page
+        if (!pathname.startsWith('/product/')) {
+            updateMetaTags(
+                'VIROSU | Premium Extrait de Parfum - Luxury Perfumery Indonesia',
+                'Rasakan kemewahan yang tahan lama dengan VIROSU. Extrait de Parfum premium yang dibuat dengan bahan-bahan langka untuk ketahanan aroma 12-24 jam.',
+                '/assets/LOGO_NEW.png?w=1200&format=webp&q=80',
+                window.location.origin
+            );
+        }
+    }, [pathname]);
+
     return null;
 }
 
@@ -35,6 +55,7 @@ function App() {
       ) : (
         <div className="min-h-screen relative bg-onyx text-white font-sans selection:bg-gold-200 selection:text-black">
           <ScrollToTop />
+          <ResetMetaTags />
           <Navbar />
           <main>
             <Routes>
