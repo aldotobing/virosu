@@ -97,7 +97,7 @@ const Hero = () => {
               {letters.map((letter, i) => (
                 <motion.span
                   key={i}
-                  className={`text-6xl md:text-8xl lg:text-9xl font-serif font-bold inline-block ${
+                  className={`text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-serif font-bold inline-block ${
                     i >= 4 ? 'text-transparent bg-clip-text bg-gradient-to-br from-gold-200 via-yellow-100 to-gold-200' : 'text-white'
                   }`}
                   style={{ transformOrigin: 'bottom center' }}
@@ -120,10 +120,10 @@ const Hero = () => {
               <div className="h-px w-12 bg-gold-200" />
               <Sparkles size={16} className="text-gold-200" />
             </div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-300 italic mb-2">
+            <h2 className="text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-light text-gray-300 italic mb-2">
               Where Scent Becomes
             </h2>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-white">
+            <h2 className="text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-serif text-white">
               Identity
             </h2>
           </motion.div>
@@ -134,7 +134,7 @@ const Hero = () => {
             animate={isLoaded ? "visible" : "hidden"}
             variants={slideInFromLeft}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-gray-400 text-base md:text-lg font-light leading-relaxed mb-10 max-w-lg"
+            className="text-gray-400 text-base md:text-base lg:text-lg font-light leading-relaxed mb-10 max-w-lg"
           >
             Crafted with rare ingredients. <span className="text-gold-200">12-24 hour</span> longevity.
             Premium Extrait de Parfum that defines luxury.
@@ -149,7 +149,7 @@ const Hero = () => {
           >
             <button
               onClick={scrollToShop}
-              className="group relative px-10 py-4 border border-gold-200/50 text-white uppercase tracking-[0.25em] text-sm overflow-hidden transition-all duration-500 hover:border-gold-200 hover:shadow-lg hover:shadow-gold-200/20"
+              className="group relative px-8 py-3.5 md:px-10 md:py-4 border border-gold-200/50 text-white uppercase tracking-[0.25em] text-xs md:text-sm overflow-hidden transition-all duration-500 hover:border-gold-200 hover:shadow-lg hover:shadow-gold-200/20"
             >
               <span className="relative z-10 group-hover:text-black transition-colors duration-500">Explore Collection</span>
               <div className="absolute inset-0 bg-gold-200 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
@@ -167,7 +167,7 @@ const Hero = () => {
 
         {/* Right Side - Featured Product with Floating Animation */}
         <motion.div
-          className="flex-1 relative hidden md:flex items-center justify-center p-12"
+          className="flex-1 relative hidden md:flex items-center justify-center p-8 lg:p-12"
           style={{ y }}
         >
           {/* Floating Product */}
@@ -181,45 +181,57 @@ const Hero = () => {
             transition={{ duration: 1.2, delay: 0.8, ease: [0.6, 0.01, 0.05, 0.95] }}
             className="relative"
           >
-            {/* Glow Behind Product */}
-            <div className="absolute inset-0 bg-gradient-to-br from-gold-200/30 to-transparent blur-3xl scale-150 -z-10" />
+            {/* Enhanced Glow Behind Product for Better Integration */}
+            <div className="absolute inset-0 bg-gradient-to-br from-gold-200/20 via-transparent to-transparent blur-3xl scale-150 -z-10" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent blur-2xl scale-125 -z-20" />
+            <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-transparent to-gold-200/10 blur-xl scale-110 -z-30" />
 
-            {/* Product Image */}
-            <motion.img
-              animate={{
-                y: [0, -20, 0],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              src="/assets/1 MILLION MAN/50 ML.jpg?w=600&format=webp&q=80"
-              srcSet="/assets/1 MILLION MAN/50 ML.jpg?w=400&format=webp&q=70 400w, /assets/1 MILLION MAN/50 ML.jpg?w=600&format=webp&q=80 600w, /assets/1 MILLION MAN/50 ML.jpg?w=800&format=webp&q=85 800w"
-              sizes="(max-width: 768px) 400px, (max-width: 1200px) 600px, 800px"
-              alt="Featured Fragrance"
-              className="max-w-sm lg:max-w-md drop-shadow-2xl"
-            />
+            {/* Product Image with Enhanced Blending */}
+            <div className="relative">
+              {/* Multiple layered shadows for depth */}
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-gold-200/10 to-transparent rounded-xl blur-xl scale-110 -z-5"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent rounded-xl blur-md scale-105 -z-4"></div>
 
-            {/* Floating Specs */}
+              {/* Main product image with enhanced depth */}
+              <motion.img
+                animate={{
+                  y: [0, -20, 0],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                src="/assets/1 MILLION MAN/50 ML.jpg?w=600&format=webp&q=80"
+                srcSet="/assets/1 MILLION MAN/50 ML.jpg?w=400&format=webp&q=70 400w, /assets/1 MILLION MAN/50 ML.jpg?w=600&format=webp&q=80 600w, /assets/1 MILLION MAN/50 ML.jpg?w=800&format=webp&q=85 800w"
+                sizes="(max-width: 768px) 400px, (max-width: 1200px) 600px, 800px"
+                alt="Featured Fragrance"
+                className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-md relative z-10 rounded-xl drop-shadow-2xl"
+              />
+
+              {/* Subtle overlay for better integration */}
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/10 rounded-xl -z-3"></div>
+            </div>
+
+            {/* Floating Specs - with higher z-index to appear in front */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={isLoaded ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 1.2 }}
-              className="absolute top-1/4 -left-20 bg-black/80 backdrop-blur-md border border-white/10 px-6 py-4 rounded-sm"
+              className="absolute top-1/4 -left-16 md:-left-20 bg-black/80 backdrop-blur-md border border-white/10 px-4 py-3 md:px-6 md:py-4 rounded-sm z-20"
             >
-              <div className="text-gold-200 text-3xl font-serif mb-1">12-24h</div>
-              <div className="text-gray-400 text-xs uppercase tracking-widest">Longevity</div>
+              <div className="text-gold-200 text-2xl md:text-3xl font-serif mb-1">12-24h</div>
+              <div className="text-gray-400 text-[10px] md:text-xs uppercase tracking-widest">Longevity</div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={isLoaded ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 1.4 }}
-              className="absolute bottom-1/4 -right-16 bg-black/80 backdrop-blur-md border border-white/10 px-6 py-4 rounded-sm"
+              className="absolute bottom-1/4 -right-12 md:-right-16 bg-black/80 backdrop-blur-md border border-white/10 px-4 py-3 md:px-6 md:py-4 rounded-sm z-20"
             >
-              <div className="text-gold-200 text-3xl font-serif mb-1">Premium</div>
-              <div className="text-gray-400 text-xs uppercase tracking-widest">Quality</div>
+              <div className="text-gold-200 text-2xl md:text-3xl font-serif mb-1">Premium</div>
+              <div className="text-gray-400 text-[10px] md:text-xs uppercase tracking-widest">Quality</div>
             </motion.div>
           </motion.div>
         </motion.div>
