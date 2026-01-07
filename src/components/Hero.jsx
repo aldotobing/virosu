@@ -9,7 +9,8 @@ const Hero = () => {
   const opacity = useTransform(scrollY, [0, 200], [1, 0]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 100);
+    // Delay slightly after splash screen would end to ensure smooth transition
+    const timer = setTimeout(() => setIsLoaded(true), 500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -20,19 +21,17 @@ const Hero = () => {
     }
   };
 
-  // Letter animation variants
-  const letterVariants = {
-    hidden: { y: 100, opacity: 0, rotateX: -90 },
-    visible: (i) => ({
-      y: 0,
+  // Slide in from left animation for all text elements
+  const slideInFromLeft = {
+    hidden: { x: -100, opacity: 0 },
+    visible: {
+      x: 0,
       opacity: 1,
-      rotateX: 0,
       transition: {
-        delay: i * 0.08,
         duration: 0.8,
         ease: [0.6, 0.01, 0.05, 0.95]
       }
-    })
+    }
   };
 
   const letters = "VIROSU".split("");
@@ -83,20 +82,21 @@ const Hero = () => {
           <motion.div
             initial={{ scaleX: 0 }}
             animate={isLoaded ? { scaleX: 1 } : {}}
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 1, delay: 0.2 }}
             className="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-gold-200/50 to-transparent origin-left"
           />
 
-          {/* Animated Brand Name */}
-          <div className="mb-8 overflow-hidden">
+          {/* Animated Brand Name - Now slides in together */}
+          <motion.div
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={slideInFromLeft}
+            className="mb-8 overflow-hidden"
+          >
             <div className="flex items-center gap-1 md:gap-2">
               {letters.map((letter, i) => (
                 <motion.span
                   key={i}
-                  custom={i}
-                  initial="hidden"
-                  animate={isLoaded ? "visible" : "hidden"}
-                  variants={letterVariants}
                   className={`text-6xl md:text-8xl lg:text-9xl font-serif font-bold inline-block ${
                     i >= 4 ? 'text-transparent bg-clip-text bg-gradient-to-br from-gold-200 via-yellow-100 to-gold-200' : 'text-white'
                   }`}
@@ -106,13 +106,14 @@ const Hero = () => {
                 </motion.span>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Tagline with Reveal */}
+          {/* Tagline with Slide In */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isLoaded ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1 }}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={slideInFromLeft}
+            transition={{ duration: 0.8, delay: 0.3 }}
             className="mb-6"
           >
             <div className="flex items-center gap-3 mb-4">
@@ -129,20 +130,22 @@ const Hero = () => {
 
           {/* Description */}
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={isLoaded ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 1.3 }}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={slideInFromLeft}
+            transition={{ duration: 0.8, delay: 0.5 }}
             className="text-gray-400 text-base md:text-lg font-light leading-relaxed mb-10 max-w-lg"
           >
-            Crafted with rare ingredients. <span className="text-gold-200">12-24 hour</span> longevity. 
+            Crafted with rare ingredients. <span className="text-gold-200">12-24 hour</span> longevity.
             Premium Extrait de Parfum that defines luxury.
           </motion.p>
 
           {/* CTA Button */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 1.6 }}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={slideInFromLeft}
+            transition={{ duration: 0.6, delay: 0.7 }}
           >
             <button
               onClick={scrollToShop}
@@ -157,30 +160,30 @@ const Hero = () => {
           <motion.div
             initial={{ scaleX: 0 }}
             animate={isLoaded ? { scaleX: 1 } : {}}
-            transition={{ duration: 1, delay: 1.8 }}
+            transition={{ duration: 1, delay: 0.9 }}
             className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-gold-200/50 to-transparent origin-right hidden md:block"
           />
         </div>
 
         {/* Right Side - Featured Product with Floating Animation */}
-        <motion.div 
+        <motion.div
           className="flex-1 relative hidden md:flex items-center justify-center p-12"
           style={{ y }}
         >
           {/* Floating Product */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
-            animate={isLoaded ? { 
-              opacity: 1, 
-              scale: 1, 
-              rotateY: 0,
+            initial={{ opacity: 0, scale: 0.8, x: 100 }}
+            animate={isLoaded ? {
+              opacity: 1,
+              scale: 1,
+              x: 0,
             } : {}}
             transition={{ duration: 1.2, delay: 0.8, ease: [0.6, 0.01, 0.05, 0.95] }}
             className="relative"
           >
             {/* Glow Behind Product */}
             <div className="absolute inset-0 bg-gradient-to-br from-gold-200/30 to-transparent blur-3xl scale-150 -z-10" />
-            
+
             {/* Product Image */}
             <motion.img
               animate={{
@@ -202,7 +205,7 @@ const Hero = () => {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={isLoaded ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 2 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
               className="absolute top-1/4 -left-20 bg-black/80 backdrop-blur-md border border-white/10 px-6 py-4 rounded-sm"
             >
               <div className="text-gold-200 text-3xl font-serif mb-1">12-24h</div>
@@ -212,7 +215,7 @@ const Hero = () => {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={isLoaded ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 2.2 }}
+              transition={{ duration: 0.8, delay: 1.4 }}
               className="absolute bottom-1/4 -right-16 bg-black/80 backdrop-blur-md border border-white/10 px-6 py-4 rounded-sm"
             >
               <div className="text-gold-200 text-3xl font-serif mb-1">Premium</div>
@@ -226,9 +229,10 @@ const Hero = () => {
       <motion.button
         onClick={scrollToShop}
         style={{ opacity }}
-        initial={{ opacity: 0 }}
-        animate={isLoaded ? { opacity: 1 } : {}}
-        transition={{ delay: 2.5 }}
+        initial="hidden"
+        animate={isLoaded ? "visible" : "hidden"}
+        variants={slideInFromLeft}
+        transition={{ duration: 0.6, delay: 1.1 }}
         className="absolute bottom-8 md:bottom-12 left-0 right-0 mx-auto w-fit flex flex-col items-center gap-2 text-white/30 hover:text-gold-200 transition-colors cursor-pointer"
       >
         <motion.div
