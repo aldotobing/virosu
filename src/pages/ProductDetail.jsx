@@ -12,6 +12,7 @@ const ProductDetail = () => {
   
   const [selectedSize, setSelectedSize] = useState(product?.sizes ? product.sizes[1] : '50ml');
   const [activeImage, setActiveImage] = useState(product?.image || {});
+  const [galleryLoaded, setGalleryLoaded] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,6 +29,29 @@ const ProductDetail = () => {
         updateMetaTags(title, description, imageUrl, url);
     }
   }, [product]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setGalleryLoaded(true);
+          observer.disconnect(); // Stop observing once loaded
+        }
+      },
+      { threshold: 0.1 } // Trigger when 10% of the element is visible
+    );
+
+    const galleryElement = document.getElementById('product-gallery');
+    if (galleryElement) {
+      observer.observe(galleryElement);
+    }
+
+    return () => {
+      if (galleryElement) {
+        observer.unobserve(galleryElement);
+      }
+    };
+  }, []);
 
   if (!product) return null;
 
@@ -157,23 +181,35 @@ const ProductDetail = () => {
           </div>
 
           {/* Thumbnails */}
-          <div className="relative z-20 flex gap-3 md:gap-4 overflow-x-auto pb-8 max-w-full px-2 md:px-4 scrollbar-hide">
-             {product.gallery.map((img, idx) => (
-                 <button
-                  key={idx}
-                  onClick={() => setActiveImage(img)}
-                  className={`w-12 h-12 md:w-16 md:h-16 shrink-0 border rounded-full transition-all duration-300 overflow-visible ${
-                    JSON.stringify(activeImage) === JSON.stringify(img) ? 'border-gold-200 ring-2 ring-gold-200/30 scale-105' : 'border-white/10 opacity-60 active:opacity-100'}`}
-                 >
-                     <img
-                       src={img?.small || img}
-                       srcSet={`${img?.small} 300w, ${img?.medium} 600w, ${img?.large} 1200w`}
-                       sizes="60px"
-                       alt=""
-                       className="w-full h-full object-cover rounded-full bg-onyx"
-                     />
-                 </button>
-             ))}
+          <div id="product-gallery" className="relative z-20 flex gap-3 md:gap-4 overflow-x-auto pb-8 max-w-full px-2 md:px-4 scrollbar-hide">
+            {galleryLoaded ? (
+              product.gallery.map((img, idx) => (
+                  <button
+                   key={idx}
+                   onClick={() => setActiveImage(img)}
+                   className={`w-12 h-12 md:w-16 md:h-16 shrink-0 border rounded-full transition-all duration-300 overflow-visible ${
+                     JSON.stringify(activeImage) === JSON.stringify(img) ? 'border-gold-200 ring-2 ring-gold-200/30 scale-105' : 'border-white/10 opacity-60 active:opacity-100'}`}
+                  >
+                      <img
+                        src={img?.small || img}
+                        srcSet={`${img?.small} 300w, ${img?.medium} 600w, ${img?.large} 1200w`}
+                        sizes="60px"
+                        alt=""
+                        className="w-full h-full object-cover rounded-full bg-onyx"
+                      />
+                  </button>
+              ))
+            ) : (
+              // Placeholder while loading
+              <div className="flex gap-3 md:gap-4">
+                {[...Array(4)].map((_, idx) => (
+                  <div
+                    key={idx}
+                    className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 animate-pulse"
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
