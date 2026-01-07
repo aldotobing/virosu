@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Star, ShoppingBag, ExternalLink, Droplets, Wind, Layers } from 'lucide-react';
+import { ArrowLeft, Star, ShoppingBag, ExternalLink, Droplets, Wind, Layers, Share } from 'lucide-react';
 import { optimizedProducts } from '../data/optimizedProducts';
+import { updateMetaTags } from '../utils/metaTags';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -17,6 +18,14 @@ const ProductDetail = () => {
     if (product) {
         setActiveImage(product.image?.large || product.image);
         setSelectedSize(product.sizes[1] || product.sizes[0]);
+
+        // Update meta tags for sharing
+        const title = `VIROSU - ${product.name}`;
+        const description = `${product.name} - ${extractIntro(product.description || '') || 'Experience luxury with this premium Extrait de Parfum'}`;
+        const imageUrl = product.image?.large || product.image || '/assets/LOGO_NEW.png?w=1200&format=webp&q=80';
+        const url = window.location.href;
+
+        updateMetaTags(title, description, imageUrl, url);
     }
   }, [product]);
 
@@ -70,6 +79,43 @@ const ProductDetail = () => {
   };
 
   const intro = extractIntro(product.description || '');
+
+  const handleShare = async (product) => {
+    const shareData = {
+      title: `VIROSU - ${product.name}`,
+      text: `${product.name} - ${intro || 'Experience luxury with this premium Extrait de Parfum'}`,
+      url: window.location.href,
+    };
+
+    // Try to use the Web Share API if available (for mobile devices)
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log('Error sharing:', err);
+        // Fallback to copying to clipboard
+        fallbackShare(shareData);
+      }
+    } else {
+      // Fallback for desktop browsers
+      fallbackShare(shareData);
+    }
+  };
+
+  const fallbackShare = async (shareData) => {
+    try {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(`${shareData.title}\n${shareData.text}\n${shareData.url}`);
+        alert('Link copied to clipboard! Share it with your friends.');
+      } else {
+        // Fallback to a share dialog
+        const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareData.url)}`;
+        window.open(shareUrl, '_blank');
+      }
+    } catch (err) {
+      console.error('Error in fallback share:', err);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-onyx">
@@ -225,11 +271,20 @@ const ProductDetail = () => {
                 </div>
             </div>
 
-            {/* Shopee Action */}
-            <div className="md:static pb-6 md:pb-0">
-                <a 
+            {/* Share and Shopee Actions */}
+            <div className="md:static pb-6 md:pb-0 space-y-4">
+                <button
+                    onClick={() => handleShare(product)}
+                    className="w-full md:w-auto bg-white/10 text-white py-4 md:py-5 px-6 md:px-8 flex items-center justify-center gap-2.5 md:gap-3 hover:bg-white/20 active:scale-[0.98] transition-all shadow-lg shadow-white/10 group overflow-hidden relative"
+                >
+                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                    <Share size={18} className="md:w-5 md:h-5 relative z-10" />
+                    <span className="uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium text-xs md:text-sm relative z-10">Share Product</span>
+                </button>
+
+                <a
                     href="https://shopee.co.id/virosu?uls_trackid=54jrj52r02l4&utm_content=43frnSTLTZotRSs553ooeysR1wEw"
-                    target="_blank" 
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="w-full md:w-auto bg-[#EE4D2D] text-white py-4 md:py-5 px-6 md:px-8 flex items-center justify-center gap-2.5 md:gap-3 hover:bg-[#ff5d3d] active:scale-[0.98] transition-all shadow-lg shadow-orange-900/20 group overflow-hidden relative"
                 >
