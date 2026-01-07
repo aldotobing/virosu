@@ -23,8 +23,9 @@ const CartSidebar = ({ isOpen, onClose }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
             onClick={onClose}
-            className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-[60] bg-black/80"
           />
 
           {/* Sidebar */}
@@ -32,7 +33,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="fixed right-0 top-0 h-full w-full md:w-[480px] bg-onyx border-l border-white/10 z-[70] flex flex-col"
           >
             {/* Header */}

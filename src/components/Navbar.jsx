@@ -14,8 +14,19 @@ const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -23,12 +34,13 @@ const Navbar = () => {
     // If not on home page, navigate first
     if (location.pathname !== '/') {
       navigate('/');
+      // Use a shorter timeout to improve responsiveness
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      }, 100);
+      }, 50); // Reduced from 100ms to 50ms
     } else {
       const element = document.getElementById(sectionId);
       if (element) {
@@ -97,13 +109,14 @@ const Navbar = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: '-100%' }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '-100%' }}
-            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             className="fixed inset-0 z-[60] bg-onyx flex flex-col items-center justify-center space-y-8"
+            style={{ pointerEvents: menuOpen ? 'auto' : 'none' }}
           >
-            <button 
+            <button
               onClick={() => setMenuOpen(false)}
               className="absolute top-8 right-8 text-white hover:text-gold-200"
             >
@@ -115,13 +128,16 @@ const Navbar = () => {
               { label: 'About', action: () => scrollToSection('about') },
               { label: 'Journal', action: () => scrollToSection('journal') }
             ].map((item) => (
-              <button 
-                key={item.label} 
+              <motion.button
+                key={item.label}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.1 }}
                 onClick={item.action}
                 className="text-4xl font-serif text-white hover:text-gold-200 hover:italic transition-all duration-300"
               >
                 {item.label}
-              </button>
+              </motion.button>
             ))}
           </motion.div>
         )}
