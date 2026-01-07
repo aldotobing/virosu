@@ -11,12 +11,12 @@ const ProductDetail = () => {
   const product = optimizedProducts.find(p => p.id === parseInt(id));
   
   const [selectedSize, setSelectedSize] = useState(product?.sizes ? product.sizes[1] : '50ml');
-  const [activeImage, setActiveImage] = useState(product?.image?.large || product?.image);
+  const [activeImage, setActiveImage] = useState(product?.image || {});
 
   useEffect(() => {
     window.scrollTo(0, 0);
     if (product) {
-        setActiveImage(product.image?.large || product.image);
+        setActiveImage(product.image);
         setSelectedSize(product.sizes[1] || product.sizes[0]);
 
         // Update meta tags for sharing
@@ -122,7 +122,7 @@ const ProductDetail = () => {
       <div className="flex flex-col md:flex-row min-h-screen">
         
         {/* Left: Interactive Gallery */}
-        <div className="w-full md:w-1/2 relative bg-charcoal/30 flex flex-col items-center justify-center p-6 md:p-12 md:h-screen md:sticky md:top-0 overflow-hidden pt-24 md:pt-12">
+        <div className="w-full md:w-1/2 relative bg-charcoal/30 flex flex-col items-center justify-center p-6 md:p-12 md:h-screen md:sticky md:top-0 overflow-visible pt-24 md:pt-12">
            {/* Background Effects */}
           <div className="absolute inset-0 bg-gold-gradient opacity-5 pointer-events-none" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 to-transparent opacity-50" />
@@ -142,13 +142,13 @@ const ProductDetail = () => {
           <div className="relative w-full h-[40vh] md:h-[60vh] flex items-center justify-center mb-6 md:mb-8">
             <AnimatePresence mode="wait">
                 <motion.img
-                    key={activeImage}
+                    key={JSON.stringify(activeImage)}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
-                    src={product.image?.small || activeImage}
-                    srcSet={`${product.image?.small} 300w, ${product.image?.medium} 600w, ${product.image?.large} 1200w`}
+                    src={typeof activeImage === 'string' ? activeImage : (activeImage?.small || activeImage)}
+                    srcSet={`${typeof activeImage === 'string' ? activeImage : (activeImage?.small || activeImage)} 300w, ${typeof activeImage === 'string' ? activeImage : (activeImage?.medium || activeImage)} 600w, ${typeof activeImage === 'string' ? activeImage : (activeImage?.large || activeImage)} 1200w`}
                     sizes="(max-width: 768px) 300px, (max-width: 1200px) 600px, 1200px"
                     alt={product.name}
                     className="max-w-full max-h-full object-contain drop-shadow-2xl relative z-10"
@@ -157,19 +157,20 @@ const ProductDetail = () => {
           </div>
 
           {/* Thumbnails */}
-          <div className="relative z-20 flex gap-3 md:gap-4 overflow-x-auto pb-4 max-w-full px-2 md:px-4 scrollbar-hide">
+          <div className="relative z-20 flex gap-3 md:gap-4 overflow-x-auto pb-8 max-w-full px-2 md:px-4 scrollbar-hide">
              {product.gallery.map((img, idx) => (
                  <button
                   key={idx}
-                  onClick={() => setActiveImage(img?.large || img)}
-                  className={`w-12 h-12 md:w-16 md:h-16 shrink-0 border rounded-full overflow-hidden transition-all duration-300 ${activeImage === (img?.large || img) ? 'border-gold-200 ring-2 ring-gold-200/30 scale-105' : 'border-white/10 opacity-60 active:opacity-100'}`}
+                  onClick={() => setActiveImage(img)}
+                  className={`w-12 h-12 md:w-16 md:h-16 shrink-0 border rounded-full transition-all duration-300 overflow-visible ${
+                    JSON.stringify(activeImage) === JSON.stringify(img) ? 'border-gold-200 ring-2 ring-gold-200/30 scale-105' : 'border-white/10 opacity-60 active:opacity-100'}`}
                  >
                      <img
                        src={img?.small || img}
                        srcSet={`${img?.small} 300w, ${img?.medium} 600w, ${img?.large} 1200w`}
                        sizes="60px"
                        alt=""
-                       className="w-full h-full object-contain p-1.5 md:p-2 bg-onyx"
+                       className="w-full h-full object-cover rounded-full bg-onyx"
                      />
                  </button>
              ))}
