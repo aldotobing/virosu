@@ -20,10 +20,10 @@ const ScentCarousel = ({ products }) => {
   const [carouselLoaded, setCarouselLoaded] = useState(false);
   const containerRef = useRef(null);
   const rotation = useMotionValue(0);
-  const radius = 500; // Increased radius for horizontal layout to allow more spread
+  const radius = 600; // Increased radius for horizontal layout to allow more spread
   const totalItems = products.length;
   // Use a horizontal layout instead of circular for better visibility
-  const maxVisibleItems = 7; // Maximum items to show at once
+  const maxVisibleItems = 4; // Maximum items to show at once
   const visibleItems = Math.min(maxVisibleItems, totalItems);
 
   // Determine if we're on mobile based on screen size
