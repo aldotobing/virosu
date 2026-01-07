@@ -2,20 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Star, ShoppingBag, ExternalLink, Droplets, Wind, Layers } from 'lucide-react';
-import { products } from '../data/products';
+import { optimizedProducts } from '../data/optimizedProducts';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const product = products.find(p => p.id === parseInt(id));
+  const product = optimizedProducts.find(p => p.id === parseInt(id));
   
   const [selectedSize, setSelectedSize] = useState(product?.sizes ? product.sizes[1] : '50ml');
-  const [activeImage, setActiveImage] = useState(product?.image);
-  
+  const [activeImage, setActiveImage] = useState(product?.image?.large || product?.image);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     if (product) {
-        setActiveImage(product.image);
+        setActiveImage(product.image?.large || product.image);
         setSelectedSize(product.sizes[1] || product.sizes[0]);
     }
   }, [product]);
@@ -95,14 +95,16 @@ const ProductDetail = () => {
           {/* Main Image */}
           <div className="relative w-full h-[40vh] md:h-[60vh] flex items-center justify-center mb-6 md:mb-8">
             <AnimatePresence mode="wait">
-                <motion.img 
+                <motion.img
                     key={activeImage}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
-                    src={activeImage} 
-                    alt={product.name} 
+                    src={product.image?.small || activeImage}
+                    srcSet={`${product.image?.small} 300w, ${product.image?.medium} 600w, ${product.image?.large} 1200w`}
+                    sizes="(max-width: 768px) 300px, (max-width: 1200px) 600px, 1200px"
+                    alt={product.name}
                     className="max-w-full max-h-full object-contain drop-shadow-2xl relative z-10"
                 />
             </AnimatePresence>
@@ -111,12 +113,18 @@ const ProductDetail = () => {
           {/* Thumbnails */}
           <div className="relative z-20 flex gap-3 md:gap-4 overflow-x-auto pb-4 max-w-full px-2 md:px-4 scrollbar-hide">
              {product.gallery.map((img, idx) => (
-                 <button 
+                 <button
                   key={idx}
-                  onClick={() => setActiveImage(img)}
-                  className={`w-12 h-12 md:w-16 md:h-16 shrink-0 border rounded-full overflow-hidden transition-all duration-300 ${activeImage === img ? 'border-gold-200 ring-2 ring-gold-200/30 scale-105' : 'border-white/10 opacity-60 active:opacity-100'}`}
+                  onClick={() => setActiveImage(img?.large || img)}
+                  className={`w-12 h-12 md:w-16 md:h-16 shrink-0 border rounded-full overflow-hidden transition-all duration-300 ${activeImage === (img?.large || img) ? 'border-gold-200 ring-2 ring-gold-200/30 scale-105' : 'border-white/10 opacity-60 active:opacity-100'}`}
                  >
-                     <img src={img} alt="" className="w-full h-full object-contain p-1.5 md:p-2 bg-onyx" />
+                     <img
+                       src={img?.small || img}
+                       srcSet={`${img?.small} 300w, ${img?.medium} 600w, ${img?.large} 1200w`}
+                       sizes="60px"
+                       alt=""
+                       className="w-full h-full object-contain p-1.5 md:p-2 bg-onyx"
+                     />
                  </button>
              ))}
           </div>

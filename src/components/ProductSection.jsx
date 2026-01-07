@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductCard from './ProductCard';
-import { products } from '../data/products';
+import { optimizedProducts } from '../data/optimizedProducts';
 
 const ProductSection = () => {
   return (
@@ -17,14 +17,14 @@ const ProductSection = () => {
           </div>
           <div className="hidden md:block">
              <span className="text-gold-400 text-sm tracking-widest uppercase">
-               {products.length} Unique Scents
+               {optimizedProducts.length} Unique Scents
              </span>
           </div>
         </header>
 
         {/* Dynamic Magazine-Style Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-20">
-          {products.map((product, index) => {
+          {optimizedProducts.map((product, index) => {
              // Create a more varied and dynamic grid pattern
              const isLarge = index % 4 === 0; // Every 4th item is large
              const isMedium = index % 5 === 0; // Every 5th item is medium

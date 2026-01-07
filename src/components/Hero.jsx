@@ -47,7 +47,7 @@ const Hero = () => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/assets/landscape-img.png')",
+              backgroundImage: "url('/assets/landscape-img.png?w=800&format=webp&q=60')",
               opacity: 0.2
             }}
           />
@@ -191,7 +191,9 @@ const Hero = () => {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              src="/assets/1 MILLION MAN/50 ML.jpg"
+              src="/assets/1 MILLION MAN/50 ML.jpg?w=600&format=webp&q=80"
+              srcSet="/assets/1 MILLION MAN/50 ML.jpg?w=400&format=webp&q=70 400w, /assets/1 MILLION MAN/50 ML.jpg?w=600&format=webp&q=80 600w, /assets/1 MILLION MAN/50 ML.jpg?w=800&format=webp&q=85 800w"
+              sizes="(max-width: 768px) 400px, (max-width: 1200px) 600px, 800px"
               alt="Featured Fragrance"
               className="max-w-sm lg:max-w-md drop-shadow-2xl"
             />

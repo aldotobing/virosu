@@ -119,7 +119,9 @@ const ProductCard = ({ product, isLarge, isMedium, isTall }) => {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               <motion.img
-                src={product.image}
+                src={product.image.small}
+                srcSet={`${product.image.small} 300w, ${product.image.medium} 600w, ${product.image.large} 1200w`}
+                sizes="(max-width: 768px) 300px, (max-width: 1200px) 600px, 1200px"
                 alt={product.name}
                 loading="lazy"
                 decoding="async"

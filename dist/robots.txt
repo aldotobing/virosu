@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://virosu.aldo-tobing.workers.dev/sitemap.xml
+
+# Disallow admin/internal pages if any
+Disallow: /admin/
+Disallow: /.git/
+
+# Crawl-delay (optional, helps prevent overwhelming the server)
+Crawl-delay: 1
