@@ -25,7 +25,7 @@ const ResetMetaTags = () => {
             updateMetaTags(
                 'VIROSU | Premium Extrait de Parfum - Luxury Perfumery Indonesia',
                 'Rasakan kemewahan yang tahan lama dengan VIROSU. Extrait de Parfum premium yang dibuat dengan bahan-bahan langka untuk ketahanan aroma 12-24 jam.',
-                '/assets/LOGO_NEW.png?w=1200&format=webp&q=80',
+                '/assets/LOGO_NEW_50.png?w=1200&format=webp&q=80',
                 window.location.origin
             );
         }

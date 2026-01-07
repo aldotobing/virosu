@@ -22,7 +22,7 @@ const ProductDetail = () => {
         // Update meta tags for sharing
         const title = `VIROSU - ${product.name}`;
         const description = `${product.name} - ${extractIntro(product.description || '') || 'Experience luxury with this premium Extrait de Parfum'}`;
-        const imageUrl = product.image?.large || product.image || '/assets/LOGO_NEW.png?w=1200&format=webp&q=80';
+        const imageUrl = product.image?.large || product.image || '/assets/LOGO_NEW_50.png?w=1200&format=webp&q=80';
         const url = window.location.href;
 
         updateMetaTags(title, description, imageUrl, url);

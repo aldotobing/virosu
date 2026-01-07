@@ -46,7 +46,7 @@ const Hero = () => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/assets/landscape-img.png?w=800&format=webp&q=60')",
+              backgroundImage: "url('/assets/landscape-img.jpg?w=800&format=webp&q=60')",
               opacity: 0.2
             }}
           />

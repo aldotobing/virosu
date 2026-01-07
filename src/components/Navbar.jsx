@@ -66,7 +66,7 @@ const Navbar = () => {
           {/* Center - Logo */}
           <div className="flex justify-center">
             <Link to="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-500">
-              <img src="/assets/LOGO_NEW.png" alt="Virosu" className="h-8 md:h-10 object-contain" />
+              <img src="/assets/LOGO_NEW_50.png" alt="Virosu" className="h-8 md:h-10 object-contain" />
             </Link>
           </div>
 
