@@ -17,10 +17,10 @@ const SplashScreen = ({ onSplashComplete }) => {
     return () => clearTimeout(timer);
   }, [onSplashComplete]);
 
-  // Letter animation variants for the logo - flying from right to left
+  // Letter animation variants for the logo - flying from right to left starting with V
   const letterVariants = {
     hidden: {
-      x: 100, // Start from the right
+      x: 200, // Start from the right
       y: 100,
       opacity: 0,
       rotateX: -90,
@@ -33,7 +33,7 @@ const SplashScreen = ({ onSplashComplete }) => {
       rotateX: 0,
       scale: 1,
       transition: {
-        delay: (letters.length - 1 - i) * 0.1, // Reverse the sequence so U appears first
+        delay: i * 0.15, // Normal sequence so V (index 0) appears first
         duration: 0.8,
         ease: [0.6, 0.01, 0.05, 0.95],
         type: "spring",
