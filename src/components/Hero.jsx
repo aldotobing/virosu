@@ -21,7 +21,24 @@ const Hero = () => {
     }
   };
 
-  // Slide in from left animation for all text elements
+  // Flying animation for VIROSU letters - continuing from splash screen
+  const letterFlyVariants = {
+    hidden: {
+      x: -100, // Start from left
+      opacity: 0
+    },
+    visible: (i) => ({
+      x: 0, // End at original position
+      opacity: 1,
+      transition: {
+        delay: i * 0.1, // Sequential delay starting from V (index 0)
+        duration: 0.8,
+        ease: [0.6, 0.01, 0.05, 0.95]
+      }
+    })
+  };
+
+  // Slide in from left animation for other elements
   const slideInFromLeft = {
     hidden: { x: -100, opacity: 0 },
     visible: {
@@ -86,17 +103,20 @@ const Hero = () => {
             className="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-gold-200/50 to-transparent origin-left"
           />
 
-          {/* Animated Brand Name - Now slides in together */}
+          {/* Animated Brand Name - Flying from left to right */}
           <motion.div
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
-            variants={slideInFromLeft}
             className="mb-8 overflow-hidden"
           >
             <div className="flex items-center gap-1 md:gap-2">
               {letters.map((letter, i) => (
                 <motion.span
                   key={i}
+                  custom={i}
+                  initial="hidden"
+                  animate={isLoaded ? "visible" : "hidden"}
+                  variants={letterFlyVariants}
                   className={`text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-serif font-bold inline-block ${
                     i >= 4 ? 'text-transparent bg-clip-text bg-gradient-to-br from-gold-200 via-yellow-100 to-gold-200' : 'text-white'
                   }`}

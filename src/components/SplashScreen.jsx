@@ -17,21 +17,23 @@ const SplashScreen = ({ onSplashComplete }) => {
     return () => clearTimeout(timer);
   }, [onSplashComplete]);
 
-  // Letter animation variants for the logo
+  // Letter animation variants for the logo - flying from right to left
   const letterVariants = {
-    hidden: { 
-      y: 100, 
-      opacity: 0, 
+    hidden: {
+      x: 100, // Start from the right
+      y: 100,
+      opacity: 0,
       rotateX: -90,
       scale: 0.5
     },
     visible: (i) => ({
+      x: 0, // End at original position
       y: 0,
       opacity: 1,
       rotateX: 0,
       scale: 1,
       transition: {
-        delay: i * 0.1,
+        delay: (letters.length - 1 - i) * 0.1, // Reverse the sequence so U appears first
         duration: 0.8,
         ease: [0.6, 0.01, 0.05, 0.95],
         type: "spring",
