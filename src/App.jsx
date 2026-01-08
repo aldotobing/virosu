@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import SplashScreen from './components/SplashScreen';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
+import Products from './pages/Products';
 import { updateMetaTags } from './utils/metaTags';
 
 // Scroll to top component
@@ -61,6 +62,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="/products" element={<Products />} />
             </Routes>
           </main>
 

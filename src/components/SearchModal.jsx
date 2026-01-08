@@ -39,7 +39,7 @@ const SearchModal = ({ isOpen, onClose }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[70] bg-black/95 backdrop-blur-xl flex items-start justify-center pt-32 px-6"
+          className="fixed inset-0 z-[120] bg-black/95 backdrop-blur-xl flex items-start justify-center pt-32 px-6"
           onClick={onClose}
         >
           <motion.div
