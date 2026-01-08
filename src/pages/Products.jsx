@@ -86,7 +86,7 @@ const Products = () => {
         />
       </div>
 
-      <div className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="max-w-7xl mx-auto mb-16 text-center">
           <motion.div
