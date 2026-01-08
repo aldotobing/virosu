@@ -96,6 +96,37 @@ const ScentCarousel = ({ products }) => {
     // For the semicircular layout, we don't need to update rotation motion value
   }, []);
 
+  // Touch/swipe handling for mobile
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+
+    const touchDiff = touchStartX.current - touchEndX.current;
+
+    // Minimum swipe distance threshold (in pixels)
+    const minSwipeDistance = 50;
+
+    if (Math.abs(touchDiff) > minSwipeDistance) {
+      if (touchDiff > 0) {
+        // Swipe left - go to next item
+        handleNext();
+      } else {
+        // Swipe right - go to previous item
+        handlePrev();
+      }
+    }
+  };
+
   const handlePrev = () => {
     setCurrentIndex(prev => {
       const newIndex = (prev - 1 + totalItems) % totalItems;
@@ -216,6 +247,9 @@ const ScentCarousel = ({ products }) => {
               setIsAutoRotating(true);
               localStorage.setItem('scentCarouselAutoRotate', 'true');
             }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             {/* Background decorative elements */}
             <div className="absolute inset-0 flex items-center justify-center">
