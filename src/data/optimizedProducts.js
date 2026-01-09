@@ -49,7 +49,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Men",
-        price: 125
+        price: 125,
+        vibe: "Bold",
+        profile: {
+            longevity: "Long Lasting",
+            sillage: "Strong",
+            gender: "Masculine",
+            intensity: 85,
+            bestTime: "Night",
+            mood: "Bold & Confident"
+        }
     },
     {
         id: 2,
@@ -83,7 +92,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
-        price: 110
+        price: 110,
+        vibe: "Fresh",
+        profile: {
+            longevity: "Moderate",
+            sillage: "Moderate",
+            gender: "Feminine",
+            intensity: 60,
+            bestTime: "Day",
+            mood: "Fresh & Playful"
+        }
     },
     {
         id: 3,
@@ -118,7 +136,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Unisex",
-        price: 145
+        price: 145,
+        vibe: "Sophisticated",
+        profile: {
+            longevity: "Eternal",
+            sillage: "Strong",
+            gender: "Unisex",
+            intensity: 95,
+            bestTime: "Both",
+            mood: "Luxury & Sophisticated"
+        }
     },
     {
         id: 4,
@@ -153,7 +180,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
-        price: 130
+        price: 130,
+        vibe: "Bold",
+        profile: {
+            longevity: "Long Lasting",
+            sillage: "Moderate",
+            gender: "Feminine",
+            intensity: 80,
+            bestTime: "Night",
+            mood: "Sensual & Energetic"
+        }
     },
     {
         id: 5,
@@ -186,7 +222,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Men",
-        price: 135
+        price: 135,
+        vibe: "Fresh",
+        profile: {
+            longevity: "Long Lasting",
+            sillage: "Moderate",
+            gender: "Masculine",
+            intensity: 75,
+            bestTime: "Both",
+            mood: "Professional & Elegant"
+        }
     },
     {
         id: 6,
@@ -215,7 +260,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Men",
-        price: 115
+        price: 115,
+        vibe: "Fresh",
+        profile: {
+            longevity: "Moderate",
+            sillage: "Moderate",
+            gender: "Masculine",
+            intensity: 65,
+            bestTime: "Day",
+            mood: "Fresh & Aquatic"
+        }
     },
     {
         id: 7,
@@ -251,7 +305,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
-        price: 95
+        price: 95,
+        vibe: "Sweet",
+        profile: {
+            longevity: "Moderate",
+            sillage: "Intimate",
+            gender: "Feminine",
+            intensity: 55,
+            bestTime: "Day",
+            mood: "Sweet & Cheerful"
+        }
     },
     {
         id: 8,
@@ -285,7 +348,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Men",
-        price: 105
+        price: 105,
+        vibe: "Fresh",
+        profile: {
+            longevity: "Moderate",
+            sillage: "Moderate",
+            gender: "Masculine",
+            intensity: 60,
+            bestTime: "Day",
+            mood: "Clean & Refreshing"
+        }
     },
     {
         id: 9,
@@ -317,7 +389,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Men",
-        price: 110
+        price: 110,
+        vibe: "Sophisticated",
+        profile: {
+            longevity: "Long Lasting",
+            sillage: "Moderate",
+            gender: "Masculine",
+            intensity: 75,
+            bestTime: "Night",
+            mood: "Warm & Sophisticated"
+        }
     },
     {
         id: 10,
@@ -348,7 +429,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
-        price: 100
+        price: 100,
+        vibe: "Romantic",
+        profile: {
+            longevity: "Long Lasting",
+            sillage: "Intimate",
+            gender: "Feminine",
+            intensity: 65,
+            bestTime: "Both",
+            mood: "Soft & Romantic"
+        }
     },
     {
         id: 11,
@@ -380,7 +470,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
-        price: 120
+        price: 120,
+        vibe: "Fresh",
+        profile: {
+            longevity: "Moderate",
+            sillage: "Moderate",
+            gender: "Feminine",
+            intensity: 60,
+            bestTime: "Day",
+            mood: "Fresh & Floral"
+        }
     },
     {
         id: 12,
@@ -411,7 +510,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
-        price: 125
+        price: 125,
+        vibe: "Bold",
+        profile: {
+            longevity: "Long Lasting",
+            sillage: "Strong",
+            gender: "Feminine",
+            intensity: 85,
+            bestTime: "Night",
+            mood: "Daring & Sweet"
+        }
     },
     {
         id: 13,
@@ -445,7 +553,16 @@ export const optimizedProducts = [
         ],
         sizes: ["30ml", "50ml"],
         category: "Women",
-        price: 105
+        price: 105,
+        vibe: "Sweet",
+        profile: {
+            longevity: "Moderate",
+            sillage: "Moderate",
+            gender: "Feminine",
+            intensity: 60,
+            bestTime: "Day",
+            mood: "Sweet & Friendly"
+        }
     },
     {
         id: 14,
@@ -471,8 +588,19 @@ export const optimizedProducts = [
             { small: optimizeImage("/assets/VERCASE EROS/30 ML.jpg", 300, 70), medium: optimizeImage("/assets/VERCASE EROS/30 ML.jpg", 600, 80), large: optimizeImage("/assets/VERCASE EROS/30 ML.jpg", 1200, 85) },
             { small: optimizeImage("/assets/VERCASE EROS/VERCASE 50ML.jpg", 300, 70), medium: optimizeImage("/assets/VERCASE EROS/VERCASE 50ML.jpg", 600, 80), large: optimizeImage("/assets/VERCASE EROS/VERCASE 50ML.jpg", 1200, 85) }
         ],
-        sizes: ["30ml", "50ml"],
-        category: "Men",
-        price: 115
-    }
-];
+                sizes: ["30ml", "50ml"],
+                        category: "Men",
+                        price: 115,
+                        vibe: "Bold",
+                        profile: {
+                            longevity: "Long Lasting",
+                
+                    sillage: "Strong",
+                    gender: "Masculine",
+                    intensity: 90,
+                    bestTime: "Night",
+                    mood: "Passionate & Bold"
+                }
+            }
+        ];
+        

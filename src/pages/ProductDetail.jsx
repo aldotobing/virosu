@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Star, ShoppingBag, ExternalLink, Droplets, Wind, Layers, Share } from 'lucide-react';
+import { ArrowLeft, Star, ShoppingBag, ExternalLink, Droplets, Wind, Layers, Share, Clock, Zap, Target, SunMoon } from 'lucide-react';
 import { optimizedProducts } from '../data/optimizedProducts';
 import { updateMetaTags } from '../utils/metaTags';
 
@@ -251,6 +251,56 @@ const ProductDetail = () => {
                 <p className="text-gray-300 text-base md:text-lg leading-relaxed font-light mb-8 md:mb-10 first-letter:text-3xl md:first-letter:text-4xl first-letter:font-serif first-letter:text-gold-200 first-letter:mr-1 first-letter:float-left">
                     {intro}
                 </p>
+            )}
+
+            {/* Scent Character Gauges */}
+            {product.profile && (
+                <div className="mb-10 grid grid-cols-2 gap-4">
+                    <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
+                        <div className="flex items-center gap-2 mb-3">
+                            <Clock size={14} className="text-gold-200" />
+                            <span className="text-[10px] uppercase tracking-widest text-gray-500">Longevity</span>
+                        </div>
+                        <div className="text-white text-sm font-medium mb-2">{product.profile.longevity}</div>
+                        <div className="h-1 w-full bg-charcoal rounded-full overflow-hidden">
+                            <motion.div 
+                                initial={{ width: 0 }}
+                                animate={{ width: product.profile.longevity === 'Eternal' ? '100%' : product.profile.longevity === 'Long Lasting' ? '80%' : '50%' }}
+                                transition={{ duration: 1, delay: 0.5 }}
+                                className="h-full bg-gold-200"
+                            />
+                        </div>
+                    </div>
+                    <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
+                        <div className="flex items-center gap-2 mb-3">
+                            <Target size={14} className="text-gold-200" />
+                            <span className="text-[10px] uppercase tracking-widest text-gray-500">Sillage</span>
+                        </div>
+                        <div className="text-white text-sm font-medium mb-2">{product.profile.sillage}</div>
+                        <div className="h-1 w-full bg-charcoal rounded-full overflow-hidden">
+                            <motion.div 
+                                initial={{ width: 0 }}
+                                animate={{ width: product.profile.sillage === 'Strong' ? '100%' : product.profile.sillage === 'Moderate' ? '60%' : '30%' }}
+                                transition={{ duration: 1, delay: 0.6 }}
+                                className="h-full bg-gold-200"
+                            />
+                        </div>
+                    </div>
+                    <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
+                        <div className="flex items-center gap-2 mb-3">
+                            <SunMoon size={14} className="text-gold-200" />
+                            <span className="text-[10px] uppercase tracking-widest text-gray-500">Best For</span>
+                        </div>
+                        <div className="text-white text-sm font-medium">{product.profile.bestTime} Use</div>
+                    </div>
+                    <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
+                        <div className="flex items-center gap-2 mb-3">
+                            <Zap size={14} className="text-gold-200" />
+                            <span className="text-[10px] uppercase tracking-widest text-gray-500">Mood</span>
+                        </div>
+                        <div className="text-white text-sm font-medium">{product.profile.mood}</div>
+                    </div>
+                </div>
             )}
 
             {/* Olfactory Pyramid (Notes) */}

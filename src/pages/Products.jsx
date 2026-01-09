@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Search, Filter, Grid, List } from 'lucide-react';
+import { Search, Filter, Grid, List, Zap } from 'lucide-react';
 import { optimizedProducts } from '../data/optimizedProducts';
 import ProductCard from '../components/ProductCard';
 
@@ -10,11 +10,13 @@ const Products = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedVibe, setSelectedVibe] = useState('all');
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
   const [isLoading, setIsLoading] = useState(true);
 
   // Categories for filtering
   const categories = ['all', 'Men', 'Women', 'Unisex'];
+  const vibes = ['all', 'Fresh', 'Bold', 'Sweet', 'Sophisticated', 'Romantic'];
 
   // Load original products once
   useEffect(() => {
@@ -49,8 +51,13 @@ const Products = () => {
       result = result.filter(product => product.category === selectedCategory);
     }
 
+    // Apply vibe filter
+    if (selectedVibe !== 'all') {
+      result = result.filter(product => product.vibe === selectedVibe);
+    }
+
     setFilteredProducts(result);
-  }, [searchTerm, selectedCategory, originalProducts]);
+  }, [searchTerm, selectedCategory, selectedVibe, originalProducts]);
 
   // Animation variants for staggered entrance
   const containerVariants = {
@@ -122,55 +129,85 @@ const Products = () => {
           transition={{ duration: 0.8, delay: 1 }}
           className="max-w-7xl mx-auto mb-12"
         >
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 shadow-2xl">
-            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-              {/* Search */}
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl">
+            {/* Top Row: Search and View Mode */}
+            <div className="flex flex-col md:flex-row gap-6 items-center justify-between mb-8 pb-8 border-b border-white/5">
+              <div className="relative w-full md:max-w-md">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
                 <input
                   type="text"
-                  placeholder="Search fragrances..."
+                  placeholder="Search by name, notes or character..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-transparent border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-200 transition-all duration-300"
+                  className="w-full pl-12 pr-4 py-3 bg-black/20 border border-white/10 rounded-full text-white placeholder-gray-500 focus:outline-none focus:border-gold-200 focus:ring-1 focus:ring-gold-200/20 transition-all duration-300 text-sm"
                 />
               </div>
 
-              {/* Category Filter */}
-              <div className="flex gap-2">
-                {categories.map((category) => (
-                  <motion.button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                      selectedCategory === category
-                        ? 'bg-gradient-to-r from-gold-200 to-yellow-100 text-black'
-                        : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                    }`}
+              <div className="flex items-center gap-4 self-end md:self-center">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-medium">View</span>
+                <div className="flex border border-white/10 rounded-full overflow-hidden bg-black/20 p-1">
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    className={`p-2 rounded-full transition-all ${viewMode === 'grid' ? 'bg-gold-200 text-black' : 'text-gray-500 hover:text-white'}`}
                   >
-                    {category === 'all' ? 'All' : category}
-                  </motion.button>
-                ))}
+                    <Grid size={16} />
+                  </button>
+                  <button
+                    onClick={() => setViewMode('list')}
+                    className={`p-2 rounded-full transition-all ${viewMode === 'list' ? 'bg-gold-200 text-black' : 'text-gray-400 hover:text-white'}`}
+                  >
+                    <List size={16} />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Row: Functional Filters */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Category Filter */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <Filter size={12} className="text-gold-200" />
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">Collection</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`px-5 py-2 rounded-full text-xs font-medium transition-all duration-300 border ${
+                        selectedCategory === category
+                          ? 'bg-gold-200 border-gold-200 text-black shadow-lg shadow-gold-200/20'
+                          : 'bg-transparent border-white/10 text-gray-400 hover:border-white/30 hover:text-white'
+                      }`}
+                    >
+                      {category === 'all' ? 'All Collections' : category}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              {/* View Toggle */}
-              <div className="flex border border-white/20 rounded-lg overflow-hidden bg-white/5">
-                <motion.button
-                  onClick={() => setViewMode('grid')}
-                  whileHover={{ backgroundColor: "rgba(212, 175, 55, 0.2)" }}
-                  className={`p-2 ${viewMode === 'grid' ? 'bg-gold-200 text-black' : 'text-gray-400'}`}
-                >
-                  <Grid size={18} />
-                </motion.button>
-                <motion.button
-                  onClick={() => setViewMode('list')}
-                  whileHover={{ backgroundColor: "rgba(212, 175, 55, 0.2)" }}
-                  className={`p-2 ${viewMode === 'list' ? 'bg-gold-200 text-black' : 'text-gray-400'}`}
-                >
-                  <List size={18} />
-                </motion.button>
+              {/* Vibe Filter */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <Zap size={12} className="text-gold-200" />
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">Find your Vibe</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {vibes.map((vibe) => (
+                    <button
+                      key={vibe}
+                      onClick={() => setSelectedVibe(vibe)}
+                      className={`px-5 py-2 rounded-full text-xs font-medium transition-all duration-300 border ${
+                        selectedVibe === vibe
+                          ? 'bg-white/10 border-gold-200/50 text-gold-200'
+                          : 'bg-transparent border-white/10 text-gray-400 hover:border-white/30 hover:text-white'
+                      }`}
+                    >
+                      {vibe === 'all' ? 'Any Vibe' : vibe}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
