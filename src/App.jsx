@@ -11,7 +11,7 @@ import { updateMetaTags } from './utils/metaTags';
 const ScrollToTop = () => {
     const { pathname } = useLocation();
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, behavior: 'instant' });
     }, [pathname]);
     return null;
 }
@@ -37,13 +37,6 @@ const ResetMetaTags = () => {
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
-
-  useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
-  }, []);
 
   const handleSplashComplete = () => {
     setShowSplash(false);

@@ -24,7 +24,6 @@ const ProductDetail = () => {
   const [galleryLoaded, setGalleryLoaded] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     if (product) {
         setActiveImage(product.image);
         setSelectedSize(product.sizes[1] || product.sizes[0]);
@@ -151,7 +150,12 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-onyx">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-onyx"
+    >
       <div className="flex flex-col md:flex-row min-h-screen">
         
         {/* Left: Interactive Gallery */}
@@ -349,7 +353,7 @@ const ProductDetail = () => {
           </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
