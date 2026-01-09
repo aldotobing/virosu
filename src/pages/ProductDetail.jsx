@@ -180,8 +180,8 @@ const ProductDetail = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
-                    src={typeof activeImage === 'string' ? encodeURI(activeImage) : (activeImage?.small || activeImage)}
-                    srcSet={`${typeof activeImage === 'string' ? encodeURI(activeImage) : (activeImage?.small || activeImage)} 300w, ${typeof activeImage === 'string' ? encodeURI(activeImage) : (activeImage?.medium || activeImage)} 600w, ${typeof activeImage === 'string' ? encodeURI(activeImage) : (activeImage?.large || activeImage)} 1200w`}
+                    src={typeof activeImage === 'string' ? encodePath(activeImage) : (activeImage?.small || activeImage)}
+                    srcSet={`${typeof activeImage === 'string' ? encodePath(activeImage) : (activeImage?.small || activeImage)} 300w, ${typeof activeImage === 'string' ? encodePath(activeImage) : (activeImage?.medium || activeImage)} 600w, ${typeof activeImage === 'string' ? encodePath(activeImage) : (activeImage?.large || activeImage)} 1200w`}
                     sizes="(max-width: 768px) 300px, (max-width: 1200px) 600px, 1200px"
                     alt={product.name}
                     className="max-w-full max-h-full object-contain drop-shadow-2xl relative z-10"
@@ -200,8 +200,8 @@ const ProductDetail = () => {
                      JSON.stringify(activeImage) === JSON.stringify(img) ? 'border-gold-200 ring-2 ring-gold-200/30 scale-105' : 'border-white/10 opacity-60 active:opacity-100'}`}
                   >
                       <img
-                        src={typeof img === 'string' ? encodeURI(img) : (img?.small || img)}
-                        srcSet={typeof img === 'string' ? `${encodeURI(img)} 300w` : `${img?.small} 300w, ${img?.medium} 600w, ${img?.large} 1200w`}
+                        src={typeof img === 'string' ? encodePath(img) : (img?.small || img)}
+                        srcSet={typeof img === 'string' ? `${encodePath(img)} 300w` : `${img?.small} 300w, ${img?.medium} 600w, ${img?.large} 1200w`}
                         sizes="60px"
                         alt=""
                         className="w-full h-full object-cover rounded-full bg-onyx"

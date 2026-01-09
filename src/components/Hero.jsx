@@ -208,8 +208,8 @@ const Hero = () => {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                src="/assets/1 MILLION MAN/50 ML.jpg?w=600&format=webp&q=80"
-                srcSet="/assets/1 MILLION MAN/50 ML.jpg?w=400&format=webp&q=70 400w, /assets/1 MILLION MAN/50 ML.jpg?w=600&format=webp&q=80 600w, /assets/1 MILLION MAN/50 ML.jpg?w=800&format=webp&q=85 800w"
+                src="/assets/1%20MILLION%20MAN/50%20ML.jpg?w=600&format=webp&q=80"
+                srcSet="/assets/1%20MILLION%20MAN/50%20ML.jpg?w=400&format=webp&q=70 400w, /assets/1%20MILLION%20MAN/50%20ML.jpg?w=600&format=webp&q=80 600w, /assets/1%20MILLION%20MAN/50%20ML.jpg?w=800&format=webp&q=85 800w"
                 sizes="(max-width: 768px) 400px, (max-width: 1200px) 600px, 800px"
                 alt="Featured Fragrance"
                 className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-md relative z-10 rounded-xl drop-shadow-2xl"
