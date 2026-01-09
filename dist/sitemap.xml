@@ -3,93 +3,101 @@
   <!-- Homepage -->
   <url>
     <loc>https://virosu.web.id/</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- Product Pages -->
+
+  <!-- Products Page -->
+  <url>
+    <loc>https://virosu.web.id/products</loc>
+    <lastmod>2026-01-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Product Detail Pages -->
   <url>
     <loc>https://virosu.web.id/product/1</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/2</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/3</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/4</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/5</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/6</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/7</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/8</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/9</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/10</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/11</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/12</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/13</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://virosu.web.id/product/14</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

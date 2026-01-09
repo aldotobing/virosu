@@ -260,20 +260,29 @@ const ScentCarousel = ({ products }) => {
             {/* Carousel Items */}
             {products.map((product, index) => {
               const position = getCardPosition(index);
+              
+              // Only render items that have some visibility to save DOM nodes and GPU
+              if (position.opacity < 0.1) return null;
 
               return (
                 <motion.div
                   key={product.id}
-                  className="absolute transition-all duration-700 ease-out"
-                  style={{
+                  className="absolute"
+                  initial={false}
+                  animate={{
                     x: position.x,
                     y: position.y,
                     scale: position.scale,
                     opacity: position.opacity,
                     zIndex: position.zIndex,
                   }}
-                  whileHover={{ scale: position.scale * 1.05 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 150, // Reduced stiffness for smoother, less intensive animation
+                    damping: 25,
+                    mass: 1
+                  }}
+                  style={{ willChange: 'transform, opacity' }}
                 >
                   <Link to={`/product/${product.id}`}>
                     <CarouselProductCard

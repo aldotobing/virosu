@@ -65,25 +65,11 @@ const Products = () => {
 
   return (
     <div className="min-h-screen bg-onyx text-white relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient Orbs */}
-        <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-gold-200/10 rounded-full blur-[100px]"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.1, 0.2, 0.1],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-10 right-10 w-64 h-64 bg-gold-200/10 rounded-full blur-[100px]"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.1, 0.2, 0.1],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
+      {/* Optimized Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Simplified Gradient Orbs */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gold-200/5 rounded-full blur-[100px] hidden md:block" />
+        <div className="absolute bottom-10 right-10 w-64 h-64 bg-gold-200/5 rounded-full blur-[100px] hidden md:block" />
       </div>
 
       <div className="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -244,9 +230,7 @@ const Products = () => {
                         exit={{ opacity: 0, scale: 0.8, y: -20 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
                       >
-                        <Link to={`/product/${product.id}`}>
-                          <ProductCard product={product} viewMode={viewMode} />
-                        </Link>
+                        <ProductCard product={product} viewMode={viewMode} />
                       </motion.div>
                     ))}
                   </AnimatePresence>

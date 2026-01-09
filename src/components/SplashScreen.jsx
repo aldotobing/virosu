@@ -53,59 +53,31 @@ const SplashScreen = ({ onSplashComplete }) => {
           transition={{ duration: 0.5 }}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-onyx overflow-hidden"
         >
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            {/* Animated gradient orbs */}
-            <motion.div
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.1, 0.3, 0.1],
-                x: [-100, 100, -100],
-                y: [-100, 100, -100],
-              }}
-              transition={{ 
-                duration: 12, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-              className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-gold-200/20 to-transparent rounded-full blur-[150px]"
-            />
-            <motion.div
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.15, 0.25, 0.15],
-                x: [100, -100, 100],
-                y: [100, -100, 100],
-              }}
-              transition={{ 
-                duration: 15, 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay: 1 
-              }}
-              className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-transparent to-gold-200/15 rounded-full blur-[120px]"
-            />
+          {/* Optimized Background Elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {/* Static or simpler gradient orbs */}
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-200/5 rounded-full blur-[100px]" />
+            <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gold-200/5 rounded-full blur-[80px]" />
             
-            {/* Subtle particle effect */}
+            {/* Reduced particle effect */}
             <div className="absolute inset-0">
-              {[...Array(50)].map((_, i) => (
+              {[...Array(15)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-1 h-1 bg-gold-200/30 rounded-full"
+                  className="absolute w-1 h-1 bg-gold-200/20 rounded-full"
                   style={{
                     left: `${Math.random() * 100}%`,
                     top: `${Math.random() * 100}%`,
                   }}
                   animate={{
-                    y: [0, -20, 0],
-                    opacity: [0, 1, 0],
-                    scale: [0, 1, 0],
+                    y: [0, -10, 0],
+                    opacity: [0, 0.5, 0],
                   }}
                   transition={{
-                    duration: 3,
+                    duration: 4,
                     repeat: Infinity,
                     delay: Math.random() * 2,
-                    ease: "easeOut"
+                    ease: "easeInOut"
                   }}
                 />
               ))}
@@ -154,41 +126,17 @@ const SplashScreen = ({ onSplashComplete }) => {
 
             {/* Tagline */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
+              transition={{ duration: 0.8, delay: 1 }}
               className="text-center mb-8"
             >
-              <motion.h2 
-                className="text-xl md:text-2xl lg:text-3xl font-light text-gray-300 italic mb-2"
-                animate={{
-                  opacity: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-gray-400 italic mb-2">
                 Where Scent Becomes
-              </motion.h2>
-              <motion.h2 
-                className="text-3xl md:text-4xl lg:text-5xl font-serif text-white"
-                animate={{
-                  textShadow: [
-                    "0 0 0px rgba(212, 175, 55, 0)",
-                    "0 0 20px rgba(212, 175, 55, 0.3)",
-                    "0 0 0px rgba(212, 175, 55, 0)",
-                  ]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
+              </h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-white">
                 Identity
-              </motion.h2>
+              </h2>
             </motion.div>
 
             {/* Loading indicator */}

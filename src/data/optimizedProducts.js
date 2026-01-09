@@ -5,7 +5,8 @@ const optimizeImage = (path, width = null, quality = 80) => {
   // If it's already an optimized URL, return as is
   if (path.includes('?')) return path;
   
-  let optimizedPath = path;
+  // Encode spaces and special characters in path for srcset compatibility
+  let optimizedPath = path.split('/').map(segment => encodeURIComponent(segment)).join('/');
   const params = [];
   
   if (width) params.push(`w=${width}`);

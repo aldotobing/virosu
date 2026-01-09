@@ -56,37 +56,23 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-onyx">
       
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Optimized Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Mobile Background Image - Super Transparent with Dark Overlay */}
         <div className="md:hidden absolute inset-0 z-0">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: "url('/assets/landscape-img.jpg?w=800&format=webp&q=60')",
-              opacity: 0.2
+              opacity: 0.1
             }}
           />
-          <div className="absolute inset-0 bg-onyx/80" />
+          <div className="absolute inset-0 bg-onyx/90" />
         </div>
 
-        {/* Desktop Gradient Orbs */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 right-20 w-96 h-96 bg-gold-200/20 rounded-full blur-[120px]"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-20 left-20 w-80 h-80 bg-gold-200/10 rounded-full blur-[100px]"
-        />
+        {/* Desktop Gradient Orbs - Static for better performance */}
+        <div className="absolute top-20 right-20 w-96 h-96 bg-gold-200/10 rounded-full blur-[120px] hidden md:block" />
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-gold-200/5 rounded-full blur-[100px] hidden md:block" />
       </div>
 
       {/* Main Content - Vertical Split */}
@@ -215,10 +201,10 @@ const Hero = () => {
               {/* Main product image with enhanced depth */}
               <motion.img
                 animate={{
-                  y: [0, -20, 0],
+                  y: [0, -10, 0],
                 }}
                 transition={{
-                  duration: 4,
+                  duration: 5,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
