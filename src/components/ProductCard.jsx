@@ -114,8 +114,8 @@ const ProductCard = ({ product, isLarge, isMedium, isTall, viewMode = 'grid' }) 
               >
                 <motion.img
                   src={product.image.small}
-                  srcSet={`${product.image.small} 300w, ${product.image.medium} 600w`}
-                  sizes="(max-width: 768px) 250px, 400px"
+                  srcSet={`${product.image.small} 300w, ${product.image.medium} 600w, ${product.image.large} 1200w`}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt={product.name}
                   loading="lazy"
                   decoding="async"

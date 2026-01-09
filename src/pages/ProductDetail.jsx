@@ -172,7 +172,7 @@ const ProductDetail = () => {
           </motion.button>
 
           {/* Main Image */}
-          <div className="relative w-full h-[40vh] md:h-[60vh] flex items-center justify-center mb-6 md:mb-8">
+          <div className="relative w-full h-[50vh] md:h-[60vh] flex items-center justify-center mb-6 md:mb-8">
             <AnimatePresence mode="wait">
                 <motion.img
                     key={JSON.stringify(activeImage)}
@@ -180,9 +180,11 @@ const ProductDetail = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
-                    src={typeof activeImage === 'string' ? encodePath(activeImage) : (activeImage?.small || activeImage)}
-                    srcSet={`${typeof activeImage === 'string' ? encodePath(activeImage) : (activeImage?.small || activeImage)} 300w, ${typeof activeImage === 'string' ? encodePath(activeImage) : (activeImage?.medium || activeImage)} 600w, ${typeof activeImage === 'string' ? encodePath(activeImage) : (activeImage?.large || activeImage)} 1200w`}
-                    sizes="(max-width: 768px) 300px, (max-width: 1200px) 600px, 1200px"
+                    src={typeof activeImage === 'string' ? encodePath(activeImage) : (activeImage?.large || activeImage?.medium || activeImage?.small || activeImage)}
+                    srcSet={typeof activeImage === 'string' 
+                      ? `${encodePath(activeImage)} 1200w` 
+                      : `${activeImage?.small} 300w, ${activeImage?.medium} 600w, ${activeImage?.large} 1200w`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1200px"
                     alt={product.name}
                     className="max-w-full max-h-full object-contain drop-shadow-2xl relative z-10"
                 />
@@ -190,7 +192,7 @@ const ProductDetail = () => {
           </div>
 
           {/* Thumbnails */}
-          <div id="product-gallery" className="relative z-20 flex gap-3 md:gap-4 overflow-x-auto pb-8 max-w-full px-2 md:px-4 scrollbar-hide">
+          <div id="product-gallery" className="relative z-20 flex gap-3 md:gap-4 overflow-x-auto py-4 max-w-full px-2 md:px-4 scrollbar-hide">
             {galleryLoaded ? (
               product.gallery.map((img, idx) => (
                   <button

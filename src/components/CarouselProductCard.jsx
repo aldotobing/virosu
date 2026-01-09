@@ -100,8 +100,8 @@ const CarouselProductCard = ({ product, isActive, scale }) => {
           >
             <motion.img
               src={product.image.small}
-              srcSet={`${product.image.small} 300w, ${product.image.medium} 600w`}
-              sizes="(max-width: 768px) 200px, 300px"
+              srcSet={`${product.image.small} 300w, ${product.image.medium} 600w, ${product.image.large} 1200w`}
+              sizes="(max-width: 768px) 300px, 400px"
               alt={product.name}
               loading="lazy"
               decoding="async"
