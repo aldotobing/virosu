@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ShoppingBag, Search } from 'lucide-react';
+import { Menu, X, Heart, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import SearchModal from './SearchModal';
 import CartSidebar from './CartSidebar';
 
@@ -9,7 +10,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
+  const { toggleCart, cartItems } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -95,11 +96,13 @@ const Navbar = () => {
               <Search strokeWidth={1} size={22} />
             </button>
             <button 
-              onClick={() => setCartOpen(true)}
+              onClick={toggleCart}
               className="text-white hover:text-gold-200 transition-colors relative"
             >
-              <ShoppingBag strokeWidth={1} size={22} />
-              <span className="absolute -top-1 -right-1 w-2 h-2 bg-gold-200 rounded-full"></span>
+              <Heart strokeWidth={1} size={22} />
+              {cartItems.length > 0 && (
+                <span className="absolute -top-1 -right-1 w-2 h-2 bg-gold-200 rounded-full animate-pulse"></span>
+              )}
             </button>
           </div>
         </div>
@@ -147,7 +150,7 @@ const Navbar = () => {
       <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
 
       {/* Cart Sidebar */}
-      <CartSidebar isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+      <CartSidebar />
     </>
   );
 };

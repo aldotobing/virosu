@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Star, ShoppingBag, ExternalLink, Droplets, Wind, Layers, Share, Clock, Zap, Target, SunMoon } from 'lucide-react';
+import { ArrowLeft, Star, ShoppingBag, ExternalLink, Share, Clock, Zap, Target, SunMoon, Heart } from 'lucide-react';
 import { optimizedProducts } from '../data/optimizedProducts';
 import { updateMetaTags } from '../utils/metaTags';
+import { useCart } from '../context/CartContext';
+import ScentPyramid from '../components/ScentPyramid';
 
 const encodePath = (path) => {
   if (!path || typeof path !== 'string') return path;
@@ -17,6 +19,7 @@ const encodePath = (path) => {
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const product = optimizedProducts.find(p => p.id === parseInt(id));
   
   const [selectedSize, setSelectedSize] = useState(product?.sizes ? product.sizes[1] : '50ml');
@@ -303,42 +306,11 @@ const ProductDetail = () => {
                 </div>
             )}
 
-            {/* Olfactory Pyramid (Notes) */}
+            {/* Olfactory Pyramid (New Visual) */}
             {(notes.top || notes.heart || notes.base) && (
-                <div className="mb-8 md:mb-12 p-5 md:p-6 bg-white/5 rounded-sm border border-white/5 backdrop-blur-sm relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gold-200/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-gold-200/10 transition-colors duration-700" />
-
-                    <h3 className="text-white font-serif text-lg md:text-xl mb-5 md:mb-6 relative z-10">Olfactory Notes</h3>
-
-                    <div className="space-y-4 md:space-y-6 relative z-10">
-                        {notes.top && (
-                            <div className="flex gap-3 md:gap-4">
-                                <div className="mt-0.5 md:mt-1 p-1.5 md:p-2 bg-charcoal rounded-full h-fit text-gold-200 shrink-0"><Wind size={16} className="md:w-[18px] md:h-[18px]" /></div>
-                                <div className="flex-1 min-w-0">
-                                    <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 block mb-1">Top Notes</span>
-                                    <p className="text-white font-light text-sm break-words">{notes.top}</p>
-                                </div>
-                            </div>
-                        )}
-                        {notes.heart && (
-                            <div className="flex gap-3 md:gap-4">
-                                <div className="mt-0.5 md:mt-1 p-1.5 md:p-2 bg-charcoal rounded-full h-fit text-gold-200 shrink-0"><Droplets size={16} className="md:w-[18px] md:h-[18px]" /></div>
-                                <div className="flex-1 min-w-0">
-                                    <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 block mb-1">Heart Notes</span>
-                                    <p className="text-white font-light text-sm break-words">{notes.heart}</p>
-                                </div>
-                            </div>
-                        )}
-                         {notes.base && (
-                            <div className="flex gap-3 md:gap-4">
-                                <div className="mt-0.5 md:mt-1 p-1.5 md:p-2 bg-charcoal rounded-full h-fit text-gold-200 shrink-0"><Layers size={16} className="md:w-[18px] md:h-[18px]" /></div>
-                                <div className="flex-1 min-w-0">
-                                    <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 block mb-1">Base Notes</span>
-                                    <p className="text-white font-light text-sm break-words">{notes.base}</p>
-                                </div>
-                            </div>
-                        )}
-                    </div>
+                <div className="mb-12">
+                   <h3 className="text-xs md:text-sm uppercase tracking-widest text-gold-200 mb-6 text-center">Olfactory Pyramid</h3>
+                   <ScentPyramid notes={notes} />
                 </div>
             )}
 
@@ -373,28 +345,41 @@ const ProductDetail = () => {
                 </div>
             </div>
 
-            {/* Share and Shopee Actions */}
+            {/* Wishlist and Shopee Actions */}
             <div className="md:static pb-6 md:pb-0 space-y-4">
+                <div className="flex flex-col md:flex-row gap-4">
+                  {/* Add to Wishlist Button */}
+                  <button
+                      onClick={() => addToCart(product, selectedSize)}
+                      className="flex-1 md:flex-none bg-transparent border border-gold-200 text-gold-200 py-4 md:py-5 px-6 md:px-8 flex items-center justify-center gap-2.5 md:gap-3 hover:bg-gold-200 hover:text-black active:scale-[0.98] transition-all duration-300 group overflow-hidden relative"
+                  >
+                      <Heart size={18} className="md:w-5 md:h-5 relative z-10" />
+                      <span className="uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium text-xs md:text-sm relative z-10">Add to Wishlist</span>
+                  </button>
+
+                  {/* Buy on Shopee Button */}
+                  <a
+                      href="https://shopee.co.id/virosu?uls_trackid=54jrj52r02l4&utm_content=43frnSTLTZotRSs553ooeysR1wEw"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-[#EE4D2D] text-white py-4 md:py-5 px-6 md:px-8 flex items-center justify-center gap-2.5 md:gap-3 hover:bg-[#ff5d3d] active:scale-[0.98] transition-all shadow-lg shadow-orange-900/20 group overflow-hidden relative"
+                  >
+                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                      <ShoppingBag size={18} className="md:w-5 md:h-5 relative z-10" />
+                      <span className="uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium text-xs md:text-sm relative z-10">Buy on Shopee</span>
+                      <ExternalLink size={14} className="md:w-4 md:h-4 relative z-10 opacity-70" />
+                  </a>
+                </div>
+
+                {/* Share Button (Secondary) */}
                 <button
                     onClick={() => handleShare(product)}
-                    className="w-full md:w-auto bg-white/10 text-white py-4 md:py-5 px-6 md:px-8 flex items-center justify-center gap-2.5 md:gap-3 hover:bg-white/20 active:scale-[0.98] transition-all shadow-lg shadow-white/10 group overflow-hidden relative"
+                    className="w-full text-gray-500 hover:text-gold-200 py-2 text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-colors"
                 >
-                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                    <Share size={18} className="md:w-5 md:h-5 relative z-10" />
-                    <span className="uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium text-xs md:text-sm relative z-10">Share Product</span>
+                    <Share size={14} />
+                    <span>Share this Scent</span>
                 </button>
 
-                <a
-                    href="https://shopee.co.id/virosu?uls_trackid=54jrj52r02l4&utm_content=43frnSTLTZotRSs553ooeysR1wEw"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full md:w-auto bg-[#EE4D2D] text-white py-4 md:py-5 px-6 md:px-8 flex items-center justify-center gap-2.5 md:gap-3 hover:bg-[#ff5d3d] active:scale-[0.98] transition-all shadow-lg shadow-orange-900/20 group overflow-hidden relative"
-                >
-                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                    <ShoppingBag size={18} className="md:w-5 md:h-5 relative z-10" />
-                    <span className="uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium text-xs md:text-sm relative z-10">Buy on Shopee</span>
-                    <ExternalLink size={14} className="md:w-4 md:h-4 relative z-10 opacity-70" />
-                </a>
                 <p className="text-center md:text-left mt-3 md:mt-4 text-[10px] md:text-xs text-gray-600 px-2 md:px-0">
                     Secure transaction via official marketplace partner.
                 </p>
