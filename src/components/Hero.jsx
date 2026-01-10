@@ -58,16 +58,17 @@ const Hero = () => {
       
       {/* Optimized Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Mobile Background Image - Super Transparent with Dark Overlay */}
+        {/* Mobile Background Image - Refined for Premium Feel */}
         <div className="md:hidden absolute inset-0 z-0">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: "url('/assets/landscape-img.jpg?w=800&format=webp&q=60')",
-              opacity: 0.1
+              opacity: 0.25 // Slightly more visible for atmosphere
             }}
           />
-          <div className="absolute inset-0 bg-onyx/90" />
+          {/* Stronger gradient for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-onyx/90 via-onyx/70 to-onyx" />
         </div>
 
         {/* Desktop Gradient Orbs - Static for better performance */}
@@ -79,7 +80,7 @@ const Hero = () => {
       <div className="relative z-10 h-screen flex flex-col md:flex-row">
         
         {/* Left Side - Text & CTA */}
-        <div className="flex-1 flex flex-col justify-center px-6 md:px-16 lg:px-24 py-20 md:py-0 relative">
+        <div className="flex-1 flex flex-col justify-center items-center md:items-start px-6 md:px-16 lg:px-24 py-20 md:py-0 relative text-center md:text-left">
           
           {/* Decorative Line */}
           <motion.div
@@ -93,7 +94,7 @@ const Hero = () => {
           <motion.div
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
-            className="mb-8 overflow-hidden"
+            className="mb-6 md:mb-8 overflow-hidden"
           >
             <div className="flex items-center gap-1 md:gap-2">
               {letters.map((letter, i) => (
@@ -103,7 +104,7 @@ const Hero = () => {
                   initial="hidden"
                   animate={isLoaded ? "visible" : "hidden"}
                   variants={letterFlyVariants}
-                  className={`text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-serif font-bold inline-block ${
+                  className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-serif font-bold inline-block ${
                     i >= 4 ? 'text-transparent bg-clip-text bg-gradient-to-br from-gold-200 via-yellow-100 to-gold-200' : 'text-white'
                   }`}
                   style={{ transformOrigin: 'bottom center' }}
@@ -120,16 +121,16 @@ const Hero = () => {
             animate={isLoaded ? "visible" : "hidden"}
             variants={slideInFromLeft}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-6"
+            className="mb-8 md:mb-6 flex flex-col items-center md:items-start"
           >
-            <div className="flex items-center gap-3 mb-4">
+            <div className="hidden md:flex items-center gap-3 mb-4">
               <div className="h-px w-12 bg-gold-200" />
               <Sparkles size={16} className="text-gold-200" />
             </div>
-            <h2 className="text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-light text-gray-300 italic mb-2">
+            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light text-gray-300 italic mb-2 tracking-wide">
               Where Scent Becomes
             </h2>
-            <h2 className="text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-serif text-white">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif text-white uppercase tracking-widest md:tracking-normal">
               Identity
             </h2>
           </motion.div>
@@ -140,7 +141,7 @@ const Hero = () => {
             animate={isLoaded ? "visible" : "hidden"}
             variants={slideInFromLeft}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-gray-400 text-base md:text-base lg:text-lg font-light leading-relaxed mb-10 max-w-lg"
+            className="text-gray-400 text-sm md:text-base lg:text-lg font-light leading-relaxed mb-10 max-w-xs md:max-w-lg mx-auto md:mx-0"
           >
             Crafted with rare ingredients. <span className="text-gold-200">12-24 hour</span> longevity.
             Premium Extrait de Parfum that defines luxury.
@@ -155,7 +156,7 @@ const Hero = () => {
           >
             <button
               onClick={scrollToShop}
-              className="group relative px-8 py-3.5 md:px-10 md:py-4 border border-gold-200/50 text-white uppercase tracking-[0.25em] text-xs md:text-sm overflow-hidden transition-all duration-500 hover:border-gold-200 hover:shadow-lg hover:shadow-gold-200/20"
+              className="group relative px-8 py-3.5 md:px-10 md:py-4 border border-gold-200/50 text-white uppercase tracking-[0.3em] text-xs md:text-sm overflow-hidden transition-all duration-500 hover:border-gold-200 hover:shadow-lg hover:shadow-gold-200/20"
             >
               <span className="relative z-10 group-hover:text-black transition-colors duration-500">Explore Collection</span>
               <div className="absolute inset-0 bg-gold-200 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
