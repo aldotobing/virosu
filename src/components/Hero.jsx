@@ -4,14 +4,21 @@ import { Sparkles } from 'lucide-react';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 100]);
   const opacity = useTransform(scrollY, [0, 200], [1, 0]);
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', checkMobile);
+
     // Delay slightly after splash screen would end to ensure smooth transition
     const timer = setTimeout(() => setIsLoaded(true), 500);
-    return () => clearTimeout(timer);
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      clearTimeout(timer);
+    };
   }, []);
 
   const scrollToShop = () => {
@@ -21,14 +28,14 @@ const Hero = () => {
     }
   };
 
-  // Flying animation for VIROSU letters - continuing from splash screen
+  // Flying animation for VIROSU letters - now rising from bottom
   const letterFlyVariants = {
     hidden: {
-      x: -100, // Start from left
+      y: 50, // Start from below
       opacity: 0
     },
     visible: (i) => ({
-      x: 0, // End at original position
+      y: 0, // End at original position
       opacity: 1,
       transition: {
         delay: i * 0.1, // Sequential delay starting from V (index 0)
@@ -38,11 +45,11 @@ const Hero = () => {
     })
   };
 
-  // Slide in from left animation for other elements
-  const slideInFromLeft = {
-    hidden: { x: -100, opacity: 0 },
+  // Fade in up animation for other elements (works better for centered mobile layout)
+  const fadeInUp = {
+    hidden: { y: 30, opacity: 0 },
     visible: {
-      x: 0,
+      y: 0,
       opacity: 1,
       transition: {
         duration: 0.8,
@@ -119,7 +126,7 @@ const Hero = () => {
           <motion.div
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
-            variants={slideInFromLeft}
+            variants={fadeInUp}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mb-8 md:mb-6 flex flex-col items-center md:items-start"
           >
@@ -139,7 +146,7 @@ const Hero = () => {
           <motion.p
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
-            variants={slideInFromLeft}
+            variants={fadeInUp}
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-gray-400 text-sm md:text-base lg:text-lg font-light leading-relaxed mb-10 max-w-xs md:max-w-lg mx-auto md:mx-0"
           >
@@ -151,8 +158,8 @@ const Hero = () => {
           <motion.div
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
-            variants={slideInFromLeft}
-            transition={{ duration: 0.6, delay: 0.7 }}
+            variants={fadeInUp}
+            transition={{ duration: 0.6, delay: isMobile ? 1.8 : 0.7 }}
           >
             <button
               onClick={scrollToShop}
@@ -250,7 +257,7 @@ const Hero = () => {
         style={{ opacity }}
         initial="hidden"
         animate={isLoaded ? "visible" : "hidden"}
-        variants={slideInFromLeft}
+        variants={fadeInUp}
         transition={{ duration: 0.6, delay: 1.1 }}
         className="absolute bottom-8 md:bottom-12 left-0 right-0 mx-auto w-fit flex flex-col items-center gap-2 text-white/30 hover:text-gold-200 transition-colors cursor-pointer"
       >
