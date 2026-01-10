@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import SplashScreen from './components/SplashScreen';
-import Home from './pages/Home';
-import ProductDetail from './pages/ProductDetail';
-import Products from './pages/Products';
 import { updateMetaTags } from './utils/metaTags';
+
+// Lazy load pages
+const Home = React.lazy(() => import('./pages/Home'));
+const ProductDetail = React.lazy(() => import('./pages/ProductDetail'));
+const Products = React.lazy(() => import('./pages/Products'));
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -52,11 +54,17 @@ function App() {
           <ResetMetaTags />
           <Navbar />
           <main>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/product/:id" element={<ProductDetail />} />
-                <Route path="/products" element={<Products />} />
-            </Routes>
+            <Suspense fallback={
+              <div className="flex items-center justify-center min-h-screen bg-onyx">
+                <div className="w-8 h-8 border-2 border-gold-200 border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            }>
+              <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/product/:id" element={<ProductDetail />} />
+                  <Route path="/products" element={<Products />} />
+              </Routes>
+            </Suspense>
           </main>
 
           {/* Footer is now globally visible or can be per page. Let's keep it global if intended, but Home has the quote section.
@@ -66,14 +74,14 @@ function App() {
           */}
           <footer className="py-20 bg-black text-center border-t border-white/5">
               <h2 className="text-2xl font-serif text-white mb-8">VIROSU<span className="text-gold-200">.</span></h2>
-              <div className="flex justify-center flex-wrap gap-8 mb-12 text-xs uppercase tracking-widest text-gray-500 px-6">
+              <div className="flex justify-center flex-wrap gap-8 mb-12 text-xs uppercase tracking-widest text-gray-400 px-6">
                 <a href="#" className="hover:text-gold-200 transition-colors">Collection</a>
                 <a href="#" className="hover:text-gold-200 transition-colors">Our Story</a>
                 <a href="#" className="hover:text-gold-200 transition-colors">Contact</a>
                 <a href="#" className="hover:text-gold-200 transition-colors">Shipping</a>
                 <a href="#" className="hover:text-gold-200 transition-colors">Returns</a>
               </div>
-              <p className="text-gray-600 text-xs tracking-wider">&copy; {new Date().getFullYear()} Virosu Perfumery. Crafted with elegance.</p>
+              <p className="text-gray-500 text-xs tracking-wider">&copy; {new Date().getFullYear()} Virosu Perfumery. Crafted with elegance.</p>
             </footer>
         </div>
       )}

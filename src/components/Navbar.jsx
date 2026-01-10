@@ -67,6 +67,7 @@ const Navbar = () => {
             <button 
               onClick={() => setMenuOpen(true)}
               className="md:hidden text-white hover:text-gold-200 transition-colors"
+              aria-label="Open menu"
             >
               <Menu strokeWidth={1} size={28} />
             </button>
@@ -92,12 +93,14 @@ const Navbar = () => {
             <button 
               onClick={() => setSearchOpen(true)}
               className="text-white hover:text-gold-200 transition-colors"
+              aria-label="Search"
             >
               <Search strokeWidth={1} size={22} />
             </button>
             <button 
               onClick={toggleCart}
               className="text-white hover:text-gold-200 transition-colors relative"
+              aria-label="Open wishlist"
             >
               <Heart strokeWidth={1} size={22} />
               {cartItems.length > 0 && (
@@ -122,6 +125,7 @@ const Navbar = () => {
             <button
               onClick={() => setMenuOpen(false)}
               className="absolute top-8 right-8 text-white hover:text-gold-200"
+              aria-label="Close menu"
             >
               <X strokeWidth={1} size={32} />
             </button>

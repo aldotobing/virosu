@@ -12,12 +12,12 @@ const ProductSection = () => {
             <h2 className="text-4xl md:text-5xl font-serif text-white mb-4">
               Curated <span className="text-gold-200 italic">Essence</span>
             </h2>
-            <p className="text-gray-400 font-light max-w-sm">
+            <p className="text-gray-300 font-light max-w-sm">
               Each fragrance is a masterpiece, composed with the rarest ingredients from around the world.
             </p>
           </div>
           <div className="self-start md:self-end">
-             <Link to="/products" className="text-gold-400 text-sm tracking-widest uppercase hover:text-gold-200 transition-colors cursor-pointer">
+             <Link to="/products" className="text-gold-200 text-sm tracking-widest uppercase hover:text-white transition-colors cursor-pointer">
                {optimizedProducts.length} Unique Scents
              </Link>
           </div>
