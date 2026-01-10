@@ -71,9 +71,16 @@ const Navbar = () => {
             >
               <Menu strokeWidth={1} size={28} />
             </button>
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex items-center space-x-8">
               <NavLink onClick={() => scrollToSection('shop')}>Shop</NavLink>
               <NavLink onClick={() => scrollToSection('shop')}>Collections</NavLink>
+              <button 
+                onClick={() => setSearchOpen(true)}
+                className="text-gray-300 hover:text-gold-200 transition-colors"
+                aria-label="Search"
+              >
+                <Search strokeWidth={1} size={20} />
+              </button>
             </div>
           </div>
 
@@ -85,14 +92,14 @@ const Navbar = () => {
           </div>
 
           {/* Right - Actions */}
-          <div className="flex items-center justify-end space-x-6">
-            <div className="hidden md:flex space-x-8 mr-8">
+          <div className="flex items-center justify-end space-x-4">
+            <div className="hidden md:flex space-x-6">
               <NavLink onClick={() => scrollToSection('about')}>About</NavLink>
               <NavLink onClick={() => scrollToSection('journal')}>Journal</NavLink>
             </div>
             <button 
               onClick={() => setSearchOpen(true)}
-              className="text-white hover:text-gold-200 transition-colors"
+              className="md:hidden text-white hover:text-gold-200 transition-colors"
               aria-label="Search"
             >
               <Search strokeWidth={1} size={22} />
