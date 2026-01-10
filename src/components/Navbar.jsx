@@ -73,7 +73,7 @@ const Navbar = () => {
             </button>
             <div className="hidden md:flex items-center space-x-8">
               <NavLink onClick={() => scrollToSection('shop')}>Shop</NavLink>
-              <NavLink onClick={() => scrollToSection('shop')}>Collections</NavLink>
+              <NavLink onClick={() => navigate('/products')}>Collections</NavLink>
               <button 
                 onClick={() => setSearchOpen(true)}
                 className="text-gray-300 hover:text-gold-200 transition-colors"
@@ -138,7 +138,7 @@ const Navbar = () => {
             </button>
             {[
               { label: 'Shop', action: () => scrollToSection('shop') },
-              { label: 'Collections', action: () => scrollToSection('shop') },
+              { label: 'Collections', action: () => { navigate('/products'); setMenuOpen(false); } },
               { label: 'About', action: () => scrollToSection('about') },
               { label: 'Journal', action: () => scrollToSection('journal') }
             ].map((item) => (
