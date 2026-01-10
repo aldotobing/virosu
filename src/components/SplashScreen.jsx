@@ -5,41 +5,81 @@ const SplashScreen = ({ onSplashComplete }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Set a timeout to hide the splash screen after animation completes
+    // Total duration: 4s
     const timer = setTimeout(() => {
       setIsVisible(false);
-      // Call the completion callback after the exit animation
       setTimeout(() => {
         onSplashComplete();
-      }, 500);
-    }, 3500); // Show splash for 3.5 seconds to allow for full animation
+      }, 800); // Wait for exit animation
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, [onSplashComplete]);
 
-  // Letter animation variants for the logo - flying from right to left starting with V
-  const letterVariants = {
-    hidden: {
-      x: 200, // Start from the right
-      y: 100,
-      opacity: 0,
-      rotateX: -90,
-      scale: 0.5
-    },
-    visible: (i) => ({
-      x: 0, // End at original position
-      y: 0,
+  // Container variants for staggering children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
       opacity: 1,
-      rotateX: 0,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3,
+      }
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.43, 0.13, 0.23, 0.96]
+      }
+    }
+  };
+
+  // Letter animation: Smooth fade up + unblur
+  const letterVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40, 
+      filter: 'blur(10px)',
+      scale: 1.1
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: 'blur(0px)',
       scale: 1,
       transition: {
-        delay: i * 0.15, // Normal sequence so V (index 0) appears first
-        duration: 0.8,
-        ease: [0.6, 0.01, 0.05, 0.95],
-        type: "spring",
-        stiffness: 100
+        duration: 1.2,
+        ease: [0.16, 1, 0.3, 1] // Custom ease-out
       }
-    })
+    }
+  };
+
+  // Separator line expansion
+  const lineVariants = {
+    hidden: { scaleX: 0, opacity: 0 },
+    visible: { 
+      scaleX: 1, 
+      opacity: 1,
+      transition: {
+        duration: 1.5,
+        delay: 1.2,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const taglineVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: {
+        duration: 1,
+        delay: 1.8,
+        ease: "easeOut"
+      }
+    }
   };
 
   const letters = "VIROSU".split("");
@@ -48,170 +88,76 @@ const SplashScreen = ({ onSplashComplete }) => {
     <AnimatePresence>
       {isVisible && (
         <motion.div 
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-onyx overflow-hidden"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-onyx overflow-hidden"
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          variants={containerVariants}
         >
-          {/* Optimized Background Elements */}
+          {/* Ambient Background Glow */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {/* Static or simpler gradient orbs */}
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-200/5 rounded-full blur-[100px]" />
-            <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gold-200/5 rounded-full blur-[80px]" />
+             <motion.div 
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 0.4 }}
+               transition={{ duration: 2 }}
+               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold-400/5 rounded-full blur-[120px]" 
+             />
+          </div>
+
+          {/* Logo Container */}
+          <div className="relative z-10 flex flex-col items-center">
             
-            {/* Reduced particle effect */}
-            <div className="absolute inset-0">
-              {[...Array(15)].map((_, i) => (
-                <motion.div
+            {/* Main Logo Text */}
+            <div className="flex items-center justify-center overflow-hidden py-4 px-8">
+              {letters.map((letter, i) => (
+                <motion.span
                   key={i}
-                  className="absolute w-1 h-1 bg-gold-200/20 rounded-full"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                  animate={{
-                    y: [0, -10, 0],
-                    opacity: [0, 0.5, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    delay: Math.random() * 2,
-                    ease: "easeInOut"
-                  }}
-                />
+                  variants={letterVariants}
+                  className={`text-6xl md:text-8xl lg:text-9xl font-serif font-bold tracking-tighter ${
+                    i >= 4 
+                      ? 'text-transparent bg-clip-text bg-gradient-to-b from-gold-200 to-gold-400' 
+                      : 'text-white'
+                  }`}
+                >
+                  {letter}
+                </motion.span>
               ))}
             </div>
-          </div>
 
-          {/* Main Content */}
-          <div className="relative z-10 flex flex-col items-center justify-center">
-            {/* Logo with 3D effect */}
-            <div className="mb-12 overflow-hidden">
-              <div className="flex items-center justify-center gap-2 md:gap-3">
-                {letters.map((letter, i) => (
-                  <motion.span
-                    key={i}
-                    custom={i}
-                    initial="hidden"
-                    animate="visible"
-                    variants={letterVariants}
-                    className={`text-7xl md:text-9xl lg:text-[10rem] font-serif font-bold inline-block relative ${
-                      i >= 4 
-                        ? 'text-transparent bg-clip-text bg-gradient-to-br from-gold-200 via-yellow-100 to-gold-300' 
-                        : 'text-white'
-                    }`}
-                    style={{ transformOrigin: 'bottom center' }}
-                  >
-                    {/* 3D effect layer */}
-                    <span 
-                      className={`absolute top-1 left-1 opacity-30 ${
-                        i >= 4 
-                          ? 'text-transparent bg-clip-text bg-gradient-to-br from-gold-300 to-gold-400' 
-                          : 'text-gray-600'
-                      }`}
-                      style={{ 
-                        textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
-                        transform: 'translate(-2px, -2px)',
-                        zIndex: -1
-                      }}
-                    >
-                      {letter}
-                    </span>
-                    {letter}
-                  </motion.span>
-                ))}
-              </div>
-            </div>
+            {/* Decorative Line */}
+            <motion.div 
+              variants={lineVariants}
+              className="w-24 md:w-32 h-[1px] bg-gradient-to-r from-transparent via-gold-200 to-transparent my-6"
+            />
 
             {/* Tagline */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="text-center mb-8"
-            >
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-gray-400 italic mb-2">
+            <motion.div variants={taglineVariants} className="flex flex-col items-center space-y-2">
+              <span className="text-gold-100/80 text-xs md:text-sm uppercase tracking-[0.4em] font-light">
                 Where Scent Becomes
-              </h2>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-white">
+              </span>
+              <span className="text-white text-lg md:text-xl font-serif italic tracking-wide">
                 Identity
-              </h2>
+              </span>
             </motion.div>
-
-            {/* Loading indicator */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 1.5 }}
-              className="mt-8"
-            >
-              <div className="flex items-center gap-3">
-                <motion.div
-                  className="w-2 h-2 bg-gold-200 rounded-full"
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <motion.div
-                  className="w-2 h-2 bg-gold-200 rounded-full"
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.2
-                  }}
-                />
-                <motion.div
-                  className="w-2 h-2 bg-gold-200 rounded-full"
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.4
-                  }}
-                />
-              </div>
-            </motion.div>
-
-            {/* Subtle tagline */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 2 }}
-              className="text-gray-500 text-sm mt-8 text-center max-w-md px-4"
-            >
-              Crafting luxury fragrances with rare ingredients
-            </motion.p>
           </div>
 
-          {/* Animated border elements */}
-          <motion.div
-            className="absolute inset-4 border border-gold-200/20 rounded-sm"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          />
-          <motion.div
-            className="absolute inset-8 border border-gold-200/10 rounded-sm"
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.7 }}
-          />
+          {/* Bottom Loading Indicator (Minimalist) */}
+          <motion.div 
+            className="absolute bottom-12 left-0 right-0 flex justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+          >
+             <div className="w-64 h-[1px] bg-white/10 overflow-hidden rounded-full">
+               <motion.div 
+                 className="h-full bg-gold-200"
+                 initial={{ width: "0%" }}
+                 animate={{ width: "100%" }}
+                 transition={{ duration: 3.5, ease: "linear" }}
+               />
+             </div>
+          </motion.div>
+
         </motion.div>
       )}
     </AnimatePresence>
